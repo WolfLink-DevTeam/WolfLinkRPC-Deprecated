@@ -1,0 +1,5 @@
+name: Paper_WolfLinkRPC
+version: '${project.version}'
+main: org.wolflink.paper.wolflinkrpc.App
+api-version: 1.16
+authors: [ MikkoAyaka ]

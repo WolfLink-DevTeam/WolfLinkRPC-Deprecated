@@ -1,0 +1,6 @@
+Host: "43.248.79.66"
+Port: 55559
+UserName: "testuser"
+Password: "Abc233"
+QueueName: "paper_1"
+Debug: false

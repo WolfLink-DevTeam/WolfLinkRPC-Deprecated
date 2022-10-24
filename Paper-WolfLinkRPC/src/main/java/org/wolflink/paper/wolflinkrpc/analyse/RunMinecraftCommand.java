@@ -1,0 +1,42 @@
+package org.wolflink.paper.wolflinkrpc.analyse;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandException;
+import org.jetbrains.annotations.NotNull;
+import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse;
+import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody;
+import org.wolflink.common.wolflinkrpc.service.MQService;
+import org.wolflink.paper.wolflinkrpc.App;
+
+@AnalyseFunction
+public class RunMinecraftCommand extends SimpleCommandAnalyse {
+
+    @NotNull
+    @Override
+    public String getKeyword() {
+        return "MC指令";
+    }
+    @NotNull
+    @Override
+    public IAction getAction() {
+        return datapack -> {
+            String originCommand = datapack.getJsonObject().get("command").getAsString();
+            String command = getCommand(originCommand);
+            if (command.length() == 0) {
+                MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
+                        new SimpleCommandResultBody(false,"指令格式错误，请参考以下格式: MC指令 kill MikkoAyaka"));
+                return;
+            }
+            try {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+                MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
+                        new SimpleCommandResultBody(true,"指令执行成功。"));
+            } catch (CommandException e) {
+                MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
+                        new SimpleCommandResultBody(false,"指令在服务器内执行时遇到了问题，以下是报错日志: "+e.getMessage()));
+            }
+        };
+    }
+}
