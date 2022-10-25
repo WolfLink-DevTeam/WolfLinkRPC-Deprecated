@@ -10,6 +10,7 @@ import org.wolflink.common.wolflinkrpc.service.MQService
 import org.wolflink.windows.wolflinkrpc.PersistenceCfg
 import org.wolflink.windows.wolflinkrpc.RPCConfiguration
 import org.wolflink.windows.wolflinkrpc.entity.MCServer
+import org.wolflink.windows.wolflinkrpc.entity.MCServerDataClass
 
 @AnalyseFunction
 class AddServerData : SimpleCommandAnalyse() {
@@ -31,7 +32,7 @@ class AddServerData : SimpleCommandAnalyse() {
                     )
                     return
                 }
-                PersistenceCfg.addMCServerData(MCServer(commandParts[0],commandParts[1],commandParts[2],commandParts[3]))
+                PersistenceCfg.addMCServerData(MCServer(MCServerDataClass(commandParts[0],commandParts[1],commandParts[2],commandParts[3])))
                 MQService.sendCommandFeedBack(datapack, RPCConfiguration.getQueueName(),
                     SimpleCommandResultBody(ConsoleSender(
                             RPCConfiguration.getQueueName(),

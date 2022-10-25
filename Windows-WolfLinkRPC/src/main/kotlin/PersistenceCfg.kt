@@ -1,6 +1,7 @@
 package org.wolflink.windows.wolflinkrpc
 
 import org.wolflink.windows.wolflinkrpc.entity.MCServer
+import org.wolflink.windows.wolflinkrpc.entity.MCServerDataClass
 import java.io.File
 import java.nio.charset.StandardCharsets
 
@@ -8,14 +9,19 @@ object PersistenceCfg {
 
     private var map : MutableMap<String,Any> = mutableMapOf()
 
-    private var mcServerDataMap : MutableMap<String,MCServer> = mutableMapOf()
+    var mcServerDataMap : MutableMap<String,MCServer> = mutableMapOf()
 
     private const val mainConfigFileName = "config.yml"
     private const val serverDataFileName = "ServerData.yml"
 
+    fun getMCServerData(serverName : String) : MCServer?
+    {
+        return mcServerDataMap[serverName]
+    }
+
     fun addMCServerData(mcServer : MCServer)
     {
-        mcServerDataMap[mcServer.name] = mcServer
+        mcServerDataMap[mcServer.data.name] = mcServer
     }
 
     fun <T> getValue(key : String,default : T) : T
@@ -53,8 +59,8 @@ object PersistenceCfg {
             for (data in dataArray)
             {
                 if(data.isEmpty())continue
-                val serverData = MCServer.fromJson(data,MCServer::class.java)
-                mcServerDataMap[serverData.name] = serverData
+                val serverData = MCServer(MCServerDataClass.fromJson(data,MCServerDataClass::class.java))
+                mcServerDataMap[serverData.data.name] = serverData
             }
             RPCLogger.info("${mcServerDataMap.size} minecraft server data instances have been loaded.")
         }
@@ -108,7 +114,7 @@ object PersistenceCfg {
         var text = ""
         for (mcServerData in mcServerDataMap.values)
         {
-            text += MCServer.toJson(mcServerData)
+            text += MCServerDataClass.toJson(mcServerData.data)
             text += "\n"
         }
         file.setWritable(true)
