@@ -27,7 +27,7 @@ class ReadWindowsFile : SimpleCommandAnalyse() {
                         SimpleCommandResultBody(ConsoleSender(RPCConfiguration.getQueueName(),RPCConfiguration.getClientType()),false,"指令格式错误,可参考格式: 读取文件 D|Test|myFile txt"))
                     return
                 }
-                val path = commandParts[0].replace("|",":/")
+                val path = commandParts[0].replace("|","/")
                 val type: ReadableFileType
                 try {
                     type = ReadableFileType.valueOf(commandParts[1].uppercase())

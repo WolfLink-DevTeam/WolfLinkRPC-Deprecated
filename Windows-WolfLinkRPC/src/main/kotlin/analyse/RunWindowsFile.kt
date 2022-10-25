@@ -11,14 +11,14 @@ import org.wolflink.windows.wolflinkrpc.RPCConfiguration
 import java.io.IOException
 
 @AnalyseFunction
-class RunWindowsBat : SimpleCommandAnalyse() {
-    override fun getKeyword(): String = "运行脚本"
+class RunWindowsFile : SimpleCommandAnalyse() {
+    override fun getKeyword(): String = "运行文件"
 
     override fun getAction(): IAction {
         return object : IAction{
             override fun invoke(datapack: RPCDataPack) {
                 val originCommand = datapack.jsonObject["command"].asString
-                val batPath = getCommand(originCommand).replace("|",":\\")
+                val batPath = getCommand(originCommand).replace("|","\\")
 
                 val diskChar = batPath.first()
                 val bodyPath = batPath.substring(0,batPath.lastIndexOf('\\'))
@@ -31,14 +31,14 @@ class RunWindowsBat : SimpleCommandAnalyse() {
                     MQService.sendCommandFeedBack(datapack, RPCConfiguration.getQueueName(),
                         SimpleCommandResultBody(
                             ConsoleSender(RPCConfiguration.getQueueName(), RPCConfiguration.getClientType()),false,
-                            "在运行脚本的过程中遇到了问题\n详细语句: $command")
+                            "在运行文件的过程中遇到了问题\n详细语句: $command")
                     )
                     return
                 }
                 MQService.sendCommandFeedBack(datapack, RPCConfiguration.getQueueName(),
                     SimpleCommandResultBody(
                         ConsoleSender(RPCConfiguration.getQueueName(), RPCConfiguration.getClientType()),true,
-                        "脚本运行成功")
+                        "文件运行成功")
                 )
             }
         }

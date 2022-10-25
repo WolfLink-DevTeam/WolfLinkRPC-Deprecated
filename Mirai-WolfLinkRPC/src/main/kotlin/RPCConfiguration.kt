@@ -16,7 +16,7 @@ object RPCConfiguration : IConfiguration {
 
     override fun getMainClass(): Class<*> = App::class.java
 
-    override fun getPassword(): String = "Abc233"
+    override fun getPassword(): String = "mikkoayaka"
 
     override fun getPort(): Int = 55559
 

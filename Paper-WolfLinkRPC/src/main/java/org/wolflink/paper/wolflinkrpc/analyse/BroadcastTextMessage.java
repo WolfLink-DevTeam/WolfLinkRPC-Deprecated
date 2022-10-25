@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
+import org.wolflink.common.wolflinkrpc.api.enums.ClientType;
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
@@ -26,7 +27,8 @@ public class BroadcastTextMessage implements IAnalyse {
     public IAction getAction() {
         return (rpcDataPack) -> {
             ISender sender = new Gson().fromJson(rpcDataPack.getJsonObject().get("sender").getAsString(), SimpleSender.class);
-            Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
+            if(sender.getPlatform() != ClientType.ANONYMOUS) Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
+            else Bukkit.broadcast(Component.text(rpcDataPack.getJsonObject().get("msg").getAsString()));
         };
     }
 }

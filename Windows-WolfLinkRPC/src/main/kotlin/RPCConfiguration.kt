@@ -11,7 +11,7 @@ object RPCConfiguration : IConfiguration {
 
     override fun getUsername(): String = "testuser"
 
-    override fun getPassword(): String = "Abc233"
+    override fun getPassword(): String = "mikkoayaka"
 
     override fun getQueueName(): String = "windows_1"
 

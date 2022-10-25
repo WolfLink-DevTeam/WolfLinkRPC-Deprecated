@@ -14,6 +14,7 @@ import org.wolflink.common.wolflinkrpc.entity.RoutingData
 import org.wolflink.common.wolflinkrpc.service.MQService.sendDataPack
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
+import org.wolflink.mirai.wolflinkrpc.analyse.RemoteCommandHelp
 import org.wolflink.mirai.wolflinkrpc.command.*
 import org.wolflink.mirai.wolflinkrpc.listener.BotLoginListener
 import org.wolflink.mirai.wolflinkrpc.listener.GroupMsgListener
@@ -54,9 +55,11 @@ author("MikkoAyaka")
         CommandData.bindCommand(SendAllTextMessage())
         CommandData.bindCommand(SendGroupTextMessage())
         CommandData.bindCommand(BukkitAPICall())
+        CommandData.bindCommand(LocalCommandHelp())
 
         RPCService.analyseFunctionList = mutableListOf()
         RPCService.analyseFunctionList.add(BroadcastTextMessage())
+        RPCService.analyseFunctionList.add(RemoteCommandHelp())
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
     }

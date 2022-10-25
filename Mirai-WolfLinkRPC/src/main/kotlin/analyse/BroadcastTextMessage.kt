@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
+import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
@@ -24,7 +25,8 @@ class BroadcastTextMessage : IAnalyse {
                     GlobalScope.launch {
                         val sender = Gson().fromJson(datapack.jsonObject.get("sender").asString,SimpleSender::class.java)
                         val msg = datapack.jsonObject.get("msg").asString
-                        App.bot.getGroup(groupID)?.sendMessage("[${datapack.senderName}|${sender.getName()}] $msg")
+                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.senderName}|${sender.getName()}] $msg")
+                        else App.bot.getGroup(groupID)?.sendMessage(msg)
                     }
                 }
             }

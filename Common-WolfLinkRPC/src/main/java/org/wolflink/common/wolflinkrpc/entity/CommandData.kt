@@ -18,6 +18,35 @@ class CommandData(val commandText : String) {
 
         private val commandRoot : MutableSet<CommandData> = mutableSetOf()
 
+        fun listSubCommand(command : String) : Set<CommandData>
+        {
+            val commandData = findCommand(command)
+            return commandData.nextCommandList
+        }
+
+        fun findCommand(command : String) : CommandData {
+            var nowCommandData = CommandData("")
+            var tempRoot = commandRoot //根指针
+            val commandParts = command.split(" ")
+            for (i in commandParts.indices) {
+                var hasCommand = false
+                //寻找是否有这个指令
+                for (commandData in tempRoot) {
+                    if (commandData.commandText == commandParts[i]) {
+                        tempRoot = commandData.nextCommandList
+                        hasCommand = true
+                        nowCommandData = commandData
+                        break
+                    }
+                }
+                if (!hasCommand) //如果没有这个指令，说明遍历到底了
+                {
+                    return nowCommandData
+                }
+            }
+            return nowCommandData
+        }
+
         @Deprecated("应该由RPCService进行调用，请使用RPCService::analyseCommand")
         fun runCommand(sender : ISender, command : String) : Boolean
         {
