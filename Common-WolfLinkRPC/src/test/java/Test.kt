@@ -3,10 +3,13 @@ import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
+import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ITextMessageBody
 import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender
+import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandExecuteBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 import java.util.Scanner
 
@@ -15,7 +18,20 @@ class Test{}
 fun main()
 {
 
-//    RPCCore.initSystem(MyConfiguration)
+    RPCCore.initSystem(MyConfiguration)
+
+    val commandBody = SimpleCommandExecuteBody(ConsoleSender(MyConfiguration.getQueueName(),MyConfiguration.getClientType()),"测试")
+    val datapack = RPCDataPack.Builder()
+        .setSenderName(MyConfiguration.getQueueName())
+        .setType(DataPackType.COMMAND_EXECUTE)
+        .setDatapackBody(commandBody)
+        .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf("paper_1")))
+        .build()
+    val callback = object : CallbackFunction{
+    }
+    MQService.sendDataPack(datapack,true,callback,10)
+    val scanner = Scanner(System.`in`)
+    var test = scanner.nextInt()
 //
 //    val textMessageBody : ITextMessageBody = object : ITextMessageBody{
 //        override fun getMsg(): String = "这是一段纯文本消息哦"

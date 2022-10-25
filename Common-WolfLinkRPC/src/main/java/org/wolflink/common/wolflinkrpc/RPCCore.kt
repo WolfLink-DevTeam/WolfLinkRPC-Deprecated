@@ -2,6 +2,9 @@ package org.wolflink.common.wolflinkrpc
 
 import com.rabbitmq.client.BuiltinExchangeType
 import com.rabbitmq.client.ConnectionFactory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
@@ -56,8 +59,11 @@ object RPCCore {
         sendOfflineMessage()
         try
         {
-            MQService.channel.close()
-            MQService.connection.close()
+            GlobalScope.launch {
+                delay(1)
+                MQService.channel.close()
+                MQService.connection.close()
+            }
         } catch (ignore : java.lang.Exception){}
 
         logger.info("System has been closed")
@@ -75,7 +81,6 @@ object RPCCore {
             count++
         }
         logger.info("CommandData has been initialized , $count commands are now available.")
-        CommandData.showCommand()
     }
     //初始化日志系统
     private fun initLogger(configuration: IConfiguration)

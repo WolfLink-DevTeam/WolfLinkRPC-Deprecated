@@ -1,6 +1,7 @@
 package org.wolflink.common.wolflinkrpc.utils
 
 import org.reflections.Reflections
+import org.reflections.ReflectionsException
 import org.reflections.scanners.ResourcesScanner
 import org.reflections.scanners.Scanners
 import org.reflections.scanners.SubTypesScanner
@@ -14,6 +15,7 @@ import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.util.Scanner
+import javax.management.ReflectionException
 import kotlin.reflect.KClass
 
 object ReflectionUtil {
@@ -25,9 +27,12 @@ object ReflectionUtil {
 //                .setScanners(SubTypesScanner(false), ResourcesScanner())
 //                .setUrls(ClasspathHelper.forClassLoader(mainClass.classLoader))
 //                .filterInputsBy(FilterBuilder().includePackage(packageName)))
-        val reflections = Reflections(packageName)
-        val classes = reflections.getTypesAnnotatedWith(specifiedAnnotation)
-        RPCCore.logger.info("Scanned ${classes.size} classes.")
+        var classes = mutableSetOf<Class<*>>()
+        try {
+            val reflections = Reflections(packageName)
+            classes = reflections.getTypesAnnotatedWith(specifiedAnnotation)
+            RPCCore.logger.info("Scanned ${classes.size} classes.")
+        } catch (ignore : ReflectionsException) { }
         return classes
     }
 //    fun filterClassesByAnnotation(classes : Set<Class<*>>, specifiedAnnotation: Class<*>) : MutableSet<Class<*>>

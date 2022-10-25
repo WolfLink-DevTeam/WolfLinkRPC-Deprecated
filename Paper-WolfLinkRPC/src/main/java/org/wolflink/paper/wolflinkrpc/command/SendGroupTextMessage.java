@@ -25,7 +25,7 @@ public class SendGroupTextMessage implements ICommandFunction {
 
     @Override
     public boolean invoke(@NotNull ISender sender, @NotNull List<String> args) {
-        if(args.size() < 3)return false;
+        if(args.size() < 2)return false;
         String routingKey = args.get(0);
         String message = StringUtil.joinToString(args.subList(1,args.size())," ");
         RPCDataPack datapack = new RPCDataPack.Builder()

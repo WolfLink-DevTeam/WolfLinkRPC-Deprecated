@@ -24,7 +24,7 @@ abstract class SimpleCommandAnalyse : IAnalyse {
 
         return object : IPredicate{
             override fun invoke(datapack: RPCDataPack): Boolean {
-                return datapack.type == DataPackType.COMMAND_EXECUTE && datapack.jsonObject.get("command").asString == getKeyword()
+                return datapack.type == DataPackType.COMMAND_EXECUTE && datapack.jsonObject.get("command").asString.startsWith(getKeyword())
             }
         }
     }

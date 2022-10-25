@@ -26,19 +26,25 @@ public class RunMinecraftCommand extends SimpleCommandAnalyse implements IAnalys
         return datapack -> {
             String originCommand = datapack.getJsonObject().get("command").getAsString();
             String command = getCommand(originCommand);
+            App.RPC_LOGGER.info("收到远程指令，原始内容: "+originCommand+" 解析内容: "+command);
             if (command.length() == 0) {
+                App.RPC_LOGGER.info("指令体为空");
                 MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
-                        new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),false,"指令格式错误，请参考以下格式: MC指令 kill MikkoAyaka"));
+                        new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),false,"指令格式错误，请参考以下格式: bukkit指令 kill MikkoAyaka"));
                 return;
             }
-            try {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-                MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
-                        new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),true,"指令执行成功。"));
-            } catch (CommandException e) {
-                MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
-                        new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),false,"指令在服务器内执行时遇到了问题，以下是报错日志: "+e.getMessage()));
-            }
+                Bukkit.getScheduler().runTask(App.INSTANCE,() -> {
+                    try {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+                        MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
+                                new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),true,"指令执行成功。"));
+                        App.RPC_LOGGER.info("指令执行成功，已返回结果。");
+                    } catch (CommandException e) {
+                        MQService.INSTANCE.sendCommandFeedBack(datapack,App.RPC_CONFIGURATION.getQueueName(),
+                                new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),false,"指令在服务器内执行时遇到了问题，以下是报错日志: "+e.getMessage()));
+                        App.RPC_LOGGER.info("指令执行失败，已返回结果。");
+                    }
+                });
         };
     }
 }
