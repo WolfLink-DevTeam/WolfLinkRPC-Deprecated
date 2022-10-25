@@ -9,6 +9,7 @@ interface JsonSerializable<T> {
 
     fun toJson(t : T) : String = Gson().toJson(t)
 
+    // 没有添加转换检查
     fun fromJson(jsonString: String,clazz : Class<T>) : T = Gson().fromJson(jsonString,clazz)
 
 }
