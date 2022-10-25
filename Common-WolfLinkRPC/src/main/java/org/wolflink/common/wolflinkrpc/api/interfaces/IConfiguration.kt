@@ -6,6 +6,7 @@ import org.reflections.scanners.SubTypesScanner
 import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.FilterBuilder
+import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
@@ -23,11 +24,12 @@ interface IConfiguration {
     fun getAnalyseFunctionList() : MutableList<IAnalyse>
     {
         val list = mutableListOf<IAnalyse>()
-        var classes = ReflectionUtil.getClasses(getMainClass(),getAnalyseFunctionPackage())
-        classes = ReflectionUtil.filterClassesByAnnotation(classes,AnalyseFunction::class.java)
+        val classes = ReflectionUtil.getClassesByAnnotation(getAnalyseFunctionPackage(),AnalyseFunction::class.java)
         for (clazz in classes) list.add(clazz.getConstructor().newInstance() as IAnalyse)
+        RPCCore.logger.info("AnalyseFunction has been initialized , ${list.size} are now available.")
         return list
     }
     fun getAnalyseFunctionPackage() : String
     fun getMainClass() : Class<*>
+    fun getCommandFunctionPackage() : String
 }

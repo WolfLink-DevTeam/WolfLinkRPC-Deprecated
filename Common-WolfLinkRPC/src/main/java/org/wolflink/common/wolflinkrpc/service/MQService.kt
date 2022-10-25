@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
@@ -47,6 +48,7 @@ object MQService {
                 }
             }
         }
+        RPCCore.logger.info("a datapack has been send.")
     }
     //发送一个不需要反馈的数据包
     fun sendDataPack(datapack: RPCDataPack)

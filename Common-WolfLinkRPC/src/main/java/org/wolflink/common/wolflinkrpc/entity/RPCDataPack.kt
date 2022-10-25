@@ -17,12 +17,10 @@ data class RPCDataPack(
                        )
 {
     companion object : JsonSerializable<RPCDataPack>
-
     fun addRoutingData(routingData: RoutingData)
     {
         routingDataList.add(routingData)
     }
-
     class Builder
     {
         private var senderName : String? = null

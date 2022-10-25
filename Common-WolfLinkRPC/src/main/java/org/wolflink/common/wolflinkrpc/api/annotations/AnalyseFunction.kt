@@ -5,5 +5,4 @@ package org.wolflink.common.wolflinkrpc.api.annotations
  * 以声明一个用于处理数据包数据的分析类
  */
 @Target(AnnotationTarget.CLASS)
-annotation class AnalyseFunction {
-}
+annotation class AnalyseFunction

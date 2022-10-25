@@ -1,14 +1,17 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
+import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
-import org.wolflink.common.wolflinkrpc.BaseConfiguration;
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
+import org.wolflink.common.wolflinkrpc.api.interfaces.ISender;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate;
+import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender;
+import org.wolflink.paper.wolflinkrpc.App;
 
 @AnalyseFunction
 public class BroadcastTextMessage implements IAnalyse {
@@ -22,7 +25,8 @@ public class BroadcastTextMessage implements IAnalyse {
     @Override
     public IAction getAction() {
         return (rpcDataPack) -> {
-            Bukkit.broadcast(Component.text(BaseConfiguration.INSTANCE.getProjectChineseName()+" §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
+            ISender sender = new Gson().fromJson(rpcDataPack.getJsonObject().get("sender").getAsString(), SimpleSender.class);
+            Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
         };
     }
 }

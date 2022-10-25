@@ -1,9 +1,10 @@
 package org.wolflink.common.wolflinkrpc.entity.impl
 
-import lombok.AllArgsConstructor
+import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ICommandResultBody
 
-class SimpleCommandResultBody(@JvmField var result: Boolean,@JvmField var info: String) :ICommandResultBody {
+class SimpleCommandResultBody(private var sender: ISender, private var result: Boolean, private var info: String) :ICommandResultBody {
+    override fun getSender(): ISender = sender
 
     override fun getResult(): Boolean = result
 

@@ -55,8 +55,9 @@ public class RPCConfiguration implements IConfiguration {
         return ClientType.BUKKIT;
     }
 
-    public String getProjectChineseName(){
-        return "§7[ §b绫狼互联§8-§9RPC §7]";
+    public String getProjectChineseName(boolean isShort){
+        if(isShort)return "§7[ §b绫狼§9RPC §7]";
+        else return "§7[ §b绫狼互联§8-§9RPC §7]";
     }
     public String getProjectEnglishName() { return  "§7[ §bWolfLink§9RPC §7]"; }
 
@@ -76,5 +77,11 @@ public class RPCConfiguration implements IConfiguration {
     @Override
     public List<IAnalyse> getAnalyseFunctionList() {
         return DefaultImpls.getAnalyseFunctionList(this);
+    }
+
+    @NotNull
+    @Override
+    public String getCommandFunctionPackage() {
+        return "org.wolflink.paper.wolflinkrpc.command";
     }
 }

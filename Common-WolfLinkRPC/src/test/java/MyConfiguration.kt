@@ -27,4 +27,5 @@ object MyConfiguration : IConfiguration {
     override fun getAnalyseFunctionPackage(): String = "org.wolflink.mirai.wolflinkrpc.analyse"
 
     override fun getMainClass(): Class<*> = RPCCore::class.java
+    override fun getCommandFunctionPackage(): String = ""
 }
