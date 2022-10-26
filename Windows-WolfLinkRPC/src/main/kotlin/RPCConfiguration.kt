@@ -1,6 +1,7 @@
 package org.wolflink.windows.wolflinkrpc
 
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
 
@@ -24,4 +25,5 @@ object RPCConfiguration : IConfiguration {
     override fun getMainClass(): Class<*> = App::class.java
 
     override fun getCommandFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.command"
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
 }

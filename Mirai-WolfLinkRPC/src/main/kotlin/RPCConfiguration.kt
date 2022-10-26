@@ -1,6 +1,7 @@
 package org.wolflink.mirai.wolflinkrpc
 
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
 
@@ -17,6 +18,7 @@ object RPCConfiguration : IConfiguration {
     override fun getMainClass(): Class<*> = App::class.java
 
     override fun getPassword(): String = "mikkoayaka"
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
 
     override fun getPort(): Int = 55559
 

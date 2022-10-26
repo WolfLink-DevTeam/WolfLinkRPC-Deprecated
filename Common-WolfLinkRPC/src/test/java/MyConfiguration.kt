@@ -2,6 +2,7 @@ import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
@@ -28,4 +29,5 @@ object MyConfiguration : IConfiguration {
 
     override fun getMainClass(): Class<*> = RPCCore::class.java
     override fun getCommandFunctionPackage(): String = ""
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
 }

@@ -11,6 +11,7 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ITextMessageBody
 import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.MQService.sendDataPack
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
@@ -51,11 +52,11 @@ author("MikkoAyaka")
         registerListener()
 
         RPCCore.initSystem(RPCConfiguration)
-        CommandData.bindCommand(SendSingleTextMessage())
-        CommandData.bindCommand(SendAllTextMessage())
-        CommandData.bindCommand(SendGroupTextMessage())
-        CommandData.bindCommand(BukkitAPICall())
-        CommandData.bindCommand(LocalCommandHelp())
+        CommandService.bindCommand(SendSingleTextMessage())
+        CommandService.bindCommand(SendAllTextMessage())
+        CommandService.bindCommand(SendGroupTextMessage())
+        CommandService.bindCommand(BukkitAPICall())
+        CommandService.bindCommand(LocalCommandHelp())
 
         RPCService.analyseFunctionList = mutableListOf()
         RPCService.analyseFunctionList.add(BroadcastTextMessage())

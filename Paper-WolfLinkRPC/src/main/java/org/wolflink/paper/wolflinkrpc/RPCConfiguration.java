@@ -2,6 +2,7 @@ package org.wolflink.paper.wolflinkrpc;
 
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType;
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
@@ -83,5 +84,12 @@ public class RPCConfiguration implements IConfiguration {
     @Override
     public String getCommandFunctionPackage() {
         return "org.wolflink.paper.wolflinkrpc.command";
+    }
+
+    @NotNull
+    @Override
+    public Map<String, PermissionLevel> getPermissionGroupMap()
+    {
+        return new HashMap<>();
     }
 }

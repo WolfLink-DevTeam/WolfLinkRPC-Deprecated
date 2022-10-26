@@ -1,10 +1,12 @@
 package org.wolflink.common.wolflinkrpc.api.interfaces.analyse
 
+import com.google.gson.Gson
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
 import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody
+import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
 import org.wolflink.common.wolflinkrpc.service.MQService.sendDataPack
 import java.util.List
 
@@ -24,7 +26,8 @@ abstract class SimpleCommandAnalyse : IAnalyse {
 
         return object : IPredicate{
             override fun invoke(datapack: RPCDataPack): Boolean {
-                return datapack.type == DataPackType.COMMAND_EXECUTE && datapack.jsonObject.get("command").asString.startsWith(getKeyword())
+                return datapack.type == DataPackType.COMMAND_EXECUTE
+                        && datapack.jsonObject.get("command").asString.startsWith(getKeyword())
             }
         }
     }

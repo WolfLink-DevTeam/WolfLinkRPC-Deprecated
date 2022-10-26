@@ -9,8 +9,10 @@ import org.reflections.util.FilterBuilder
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.utils.ReflectionUtil
+import java.util.UUID
 
 interface IConfiguration {
     fun getHost() : String
@@ -32,4 +34,7 @@ interface IConfiguration {
     fun getAnalyseFunctionPackage() : String
     fun getMainClass() : Class<*>
     fun getCommandFunctionPackage() : String
+
+    // key-用户唯一UUID value-权限等级
+    fun getPermissionGroupMap() : MutableMap<String,PermissionLevel>
 }

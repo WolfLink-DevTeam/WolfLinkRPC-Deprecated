@@ -9,6 +9,7 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction
 import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class LocalCommandHelpImpl : ICommandFunction {
@@ -20,7 +21,7 @@ open class LocalCommandHelpImpl : ICommandFunction {
 
         val routingKey = RPCCore.configuration.getQueueName()
         val command = args.joinToString(" ")
-        val message = CommandData.listSubCommand(command).joinToString("\n") { it.commandText }
+        val message = CommandService.listSubCommand(command).joinToString("\n") { it.commandText }
         val datapack = RPCDataPack.Builder()
             .setDatapackBody(SimpleTextMessageBody(SimpleSender("","",ClientType.ANONYMOUS),"指令 $command 拥有以下子指令\n$message"))
             .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf(routingKey)))
