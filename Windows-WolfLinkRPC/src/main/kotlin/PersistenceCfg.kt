@@ -1,5 +1,6 @@
 package org.wolflink.windows.wolflinkrpc
 
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.windows.wolflinkrpc.entity.MCServer
 import org.wolflink.windows.wolflinkrpc.entity.MCServerDataClass
 import java.io.File
@@ -11,9 +12,11 @@ object PersistenceCfg {
 
     var mcServerDataMap : MutableMap<String,MCServer> = mutableMapOf()
 
-    private const val mainConfigFileName = "config.yml"
+    private const val mainConfigFileName = "config.txt"
     //服务器数据可读写
-    private const val serverDataFileName = "ServerData.yml"
+    private const val serverDataFileName = "ServerData.txt"
+
+    private const val permissionFileName = "PermissionData.txt"
 
     var host : String = "127.0.0.1"
     var port : Int = 0
@@ -21,6 +24,7 @@ object PersistenceCfg {
     var password : String = "password"
     var queueName : String = "windows_default"
     var debug : Boolean = false
+    val permissionMap : MutableMap<String,PermissionLevel> = mutableMapOf()
 
     fun getMCServerData(serverName : String) : MCServer?
     {
@@ -32,25 +36,23 @@ object PersistenceCfg {
         mcServerDataMap[mcServer.data.name] = mcServer
     }
 
-    fun <T> getValue(key : String,default : T) : T
-    {
-        val t : T
-        return try{
-            t = map[key] as T
-            t ?: default
-        } catch (e : ClassCastException) {
-            default
-        }
-    }
+    fun getString(key : String) = map[key] as String
+    fun getBoolean(key: String) = getString(key).toBoolean()
+    fun getInt(key: String) = getString(key).toInt()
+    fun getDouble(key: String) = getString(key).toDouble()
+
+
     fun loadCfg()
     {
         loadMainCfg()
         loadMCServerData()
+        loadPermissionCfg()
     }
     fun saveCfg()
     {
         saveMainCfg()
         saveMCServerData()
+        savePermissionCfg()
     }
 
     private fun loadMCServerData()
@@ -74,6 +76,42 @@ object PersistenceCfg {
         }
         RPCLogger.info("ServerData has been loaded.")
     }
+    private fun loadPermissionCfg()
+    {
+        val file = File(System.getProperty("user.dir"), permissionFileName)
+        if(!file.exists())
+        {
+            file.createNewFile()
+            RPCLogger.info("No permission data has been loaded , create a new file .")
+        }else
+        {
+            val dataString = String(file.inputStream().readBytes(),StandardCharsets.UTF_8)
+            val dataArray = dataString.split("\n")
+            for (data in dataArray)
+            {
+                if(data.isEmpty())continue
+                val (key,value) = data.split("||")
+                permissionMap[key] = PermissionLevel.valueOf(value.uppercase())
+            }
+            RPCLogger.info("PermissionData has been loaded.")
+        }
+    }
+    private fun savePermissionCfg()
+    {
+        val file = File(System.getProperty("user.dir"), permissionFileName)
+        if(!file.exists())
+        {
+            file.createNewFile()
+        }
+        var text = ""
+        for ((key,value) in permissionMap)
+        {
+            text += "$key ${value.name.uppercase()}\n"
+        }
+        file.setWritable(true)
+        file.writeText(text)
+        RPCLogger.info("PermissionData has been saved.")
+    }
 
     private fun loadMainCfg()
     {
@@ -82,12 +120,12 @@ object PersistenceCfg {
         {
             file.createNewFile()
             file.writeText("""
-                Host: "127.0.0.1"
-                Port: 10000
-                Username: "username"
-                Password: "password"
-                ClientTag: "default"
-                Debug: false
+                Host = 127.0.0.1
+                Port = 10000
+                Username = username
+                Password = password
+                ClientTag = default
+                Debug = false
             """.trimIndent())
         }
         val str = String(file.inputStream().readBytes(),StandardCharsets.UTF_8)
@@ -98,19 +136,12 @@ object PersistenceCfg {
             val (key,value) = _str.split(" = ")
             map[key] = value
         }
-        try {
-            host = map["Host"] as String
-            port = map["Port"] as Int
-            username = map["Username"] as String
-            password = map["Password"] as String
-            queueName = "windows_${map["ClientTag"] as String}"
-            debug = map["Debug"] as Boolean
-        } catch (e : ClassCastException)
-        {
-            e.printStackTrace()
-            RPCLogger.error("The config load failed , please check the stack trace !")
-            return
-        }
+            host = getString("Host")
+            port = getInt("Port")
+            username = getString("Username")
+            password = getString("Password")
+            queueName = "windows_${getString("ClientTag")}"
+            debug = getBoolean("Debug")
         RPCLogger.info("Config has been loaded.")
     }
     private fun saveMainCfg()

@@ -10,6 +10,7 @@ object App
     fun enable()
     {
         PersistenceCfg.loadCfg()
+
         RPCCore.initSystem(RPCConfiguration)
 
         initScanner()
@@ -24,7 +25,7 @@ object App
     private fun initScanner()
     {
         RPCLogger.info("Input scanner has been initialized.")
-        val scanner = Scanner(System.`in`)
+        val scanner = Scanner(System.`in`,"GBK")
         var inputString = scanner.nextLine()
         while (inputString != "stop")
         {

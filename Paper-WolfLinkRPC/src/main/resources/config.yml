@@ -4,3 +4,6 @@ UserName: "testuser"
 Password: "Abc233"
 QueueName: "paper_1"
 Debug: false
+PermissionList: []
+# 实际队列名为 bukkit_paper_default
+ClientTag: paper_default

@@ -7,8 +7,6 @@ open class SimpleSender(private var queueName : String,private var senderName : 
     ISender {
     override fun getQueueName(): String = queueName
     override fun getSenderName(): String = senderName
-
     override fun getUniqueID(): String = uniqueID
-
     override fun getPlatform(): ClientType = platform
 }

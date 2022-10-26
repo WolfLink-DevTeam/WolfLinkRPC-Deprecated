@@ -16,5 +16,5 @@ object RPCConfiguration : IConfiguration {
     override fun getAnalyseFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.analyse"
     override fun getMainClass(): Class<*> = App::class.java
     override fun getCommandFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.command"
-    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = PersistenceCfg.permissionMap
 }

@@ -16,7 +16,6 @@ class Main{
         Initializing,please wait...
         
     """.trimIndent())
-
             App.enable()
         }
     }
