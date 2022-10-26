@@ -18,7 +18,7 @@ object RPCConfiguration : IConfiguration {
     override fun getMainClass(): Class<*> = App::class.java
 
     override fun getPassword(): String = "mikkoayaka"
-    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf("3401286177" to PermissionLevel.ONLY_MANAGER)
 
     override fun getPort(): Int = 55559
 

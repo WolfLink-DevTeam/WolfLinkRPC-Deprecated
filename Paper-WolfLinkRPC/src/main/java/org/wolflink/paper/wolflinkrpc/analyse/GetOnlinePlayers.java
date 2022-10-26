@@ -11,11 +11,8 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse;
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack;
 import org.wolflink.common.wolflinkrpc.entity.RoutingData;
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender;
 import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody;
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender;
 import org.wolflink.common.wolflinkrpc.service.MQService;
-import org.wolflink.paper.wolflinkrpc.App;
 
 import java.util.List;
 
@@ -38,14 +35,14 @@ public class GetOnlinePlayers extends SimpleCommandAnalyse implements IAnalyse{
                 onlinePlayers.append(p.getName());
                 onlinePlayers.append(" ");
             }
-            RPCDataPack datapack = new RPCDataPack.Builder()
-                    .setDatapackBody(new SimpleCommandResultBody(new ConsoleSender(App.RPC_CONFIGURATION.getQueueName(),App.RPC_CONFIGURATION.getClientType()),true,onlinePlayers.toString()))
-                    .setType(DataPackType.COMMAND_RESULT)
-                    .setSenderName(App.RPC_CONFIGURATION.getQueueName())
-                    .addRoutingData(new RoutingData(ExchangeType.SINGLE_EXCHANGE, List.of(rpcDataPack.getSenderName())))
-                    .setUUID(rpcDataPack.getUuid())
-                    .build();
-            MQService.INSTANCE.sendDataPack(datapack);
+            MQService.INSTANCE.sendCommandFeedBack(rpcDataPack,new SimpleCommandResultBody(true,onlinePlayers.toString()));
+//            RPCDataPack datapack = new RPCDataPack.Builder()
+//                    .setDatapackBody()
+//                    .setType(DataPackType.COMMAND_RESULT)
+//                    .addRoutingData(new RoutingData(ExchangeType.SINGLE_EXCHANGE, List.of(rpcDataPack.getSender().getQueueName())))
+//                    .setUUID(rpcDataPack.getUuid())
+//                    .build();
+//            MQService.INSTANCE.sendDataPack(datapack);
         };
     }
 }

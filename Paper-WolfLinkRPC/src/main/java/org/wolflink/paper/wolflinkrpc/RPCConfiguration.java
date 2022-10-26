@@ -90,6 +90,9 @@ public class RPCConfiguration implements IConfiguration {
     @Override
     public Map<String, PermissionLevel> getPermissionGroupMap()
     {
-        return new HashMap<>();
+        //TODO 把这个配置放到配置文件当中
+        Map<String,PermissionLevel> map = new HashMap<>();
+        map.put("3401286177",PermissionLevel.ONLY_MANAGER);
+        return map;
     }
 }

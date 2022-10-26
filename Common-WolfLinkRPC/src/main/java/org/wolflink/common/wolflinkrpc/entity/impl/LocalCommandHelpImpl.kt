@@ -21,12 +21,12 @@ open class LocalCommandHelpImpl : ICommandFunction {
 
         val routingKey = RPCCore.configuration.getQueueName()
         val command = args.joinToString(" ")
-        val message = CommandService.listSubCommand(command).joinToString("\n") { it.commandText }
+        val message = CommandService.listSubCommand(command).joinToString("\n") { "${it.commandText} 权限 ${it.permission.name}" }
         val datapack = RPCDataPack.Builder()
-            .setDatapackBody(SimpleTextMessageBody(SimpleSender("","",ClientType.ANONYMOUS),"指令 $command 拥有以下子指令\n$message"))
+            .setDatapackBody(SimpleTextMessageBody("指令 $command 拥有以下子指令\n$message"))
             .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf(routingKey)))
+            .setSender(SimpleSender(routingKey,"","",ClientType.ANONYMOUS))
             .setType(DataPackType.TEXT_MESSAGE)
-            .setSenderName(routingKey)
             .build()
         MQService.sendDataPack(datapack)
         return true

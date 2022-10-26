@@ -13,6 +13,7 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import java.util.*
+import kotlin.concurrent.schedule
 
 
 class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
@@ -33,14 +34,23 @@ class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
     private fun setCallbackFailed(datapack : RPCDataPack, second : Int?, callbackFunction: CallbackFunction)
     {
         val sec = second ?: 15
-        GlobalScope.launch {
-            delay(1000L * sec)
+
+        Timer().schedule(1000L * sec){
             if(callbackMap.containsKey(datapack.uuid)) // 如果该UUID还留存在map里面，触发失败回调函数
             {
                 callbackFunction.failed(datapack)
                 callbackMap.remove(datapack.uuid)
             }
         }
+
+//        GlobalScope.launch {
+//            delay(1000L * sec)
+//            if(callbackMap.containsKey(datapack.uuid)) // 如果该UUID还留存在map里面，触发失败回调函数
+//            {
+//                callbackFunction.failed(datapack)
+//                callbackMap.remove(datapack.uuid)
+//            }
+//        }
     }
 
     override fun handleDelivery(consumerTag: String?, envelope: Envelope?, properties: AMQP.BasicProperties?, body: ByteArray?)

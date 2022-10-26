@@ -26,8 +26,8 @@ public class BroadcastTextMessage implements IAnalyse {
     @Override
     public IAction getAction() {
         return (rpcDataPack) -> {
-            ISender sender = new Gson().fromJson(rpcDataPack.getJsonObject().get("sender").getAsString(), SimpleSender.class);
-            if(sender.getPlatform() != ClientType.ANONYMOUS) Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
+            ISender sender = rpcDataPack.getSender();
+            if(sender.getPlatform() != ClientType.ANONYMOUS) Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getSenderName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
             else Bukkit.broadcast(Component.text(rpcDataPack.getJsonObject().get("msg").getAsString()));
         };
     }

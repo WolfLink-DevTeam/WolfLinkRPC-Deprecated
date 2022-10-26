@@ -8,6 +8,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender;
 import org.wolflink.common.wolflinkrpc.service.RPCService;
 import org.wolflink.paper.wolflinkrpc.App;
+import org.wolflink.paper.wolflinkrpc.RPCConfiguration;
+
 public class OnPlayerChat implements Listener {
 
     @EventHandler
@@ -17,7 +19,7 @@ public class OnPlayerChat implements Listener {
         if(msg.startsWith(">"))
         {
             Player p = e.getPlayer();
-            if(RPCService.INSTANCE.analyseCommand(new SimpleSender(p.getName(),p.getUniqueId().toString(), App.RPC_CONFIGURATION.getClientType()),msg))
+            if(RPCService.INSTANCE.analyseCommand(new SimpleSender(App.RPC_CONFIGURATION.getQueueName(),p.getName(),p.getUniqueId().toString(), App.RPC_CONFIGURATION.getClientType()),msg))
             {
                 p.sendMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" \u00a7f指令执行成功");
                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,2);

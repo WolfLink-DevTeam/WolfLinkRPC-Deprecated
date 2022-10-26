@@ -5,14 +5,7 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
 import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
-import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ITextMessageBody
-import org.wolflink.common.wolflinkrpc.entity.CommandData
-import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.RoutingData
 import org.wolflink.common.wolflinkrpc.service.CommandService
-import org.wolflink.common.wolflinkrpc.service.MQService.sendDataPack
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
 import org.wolflink.mirai.wolflinkrpc.analyse.RemoteCommandHelp
@@ -55,7 +48,7 @@ author("MikkoAyaka")
         CommandService.bindCommand(SendSingleTextMessage())
         CommandService.bindCommand(SendAllTextMessage())
         CommandService.bindCommand(SendGroupTextMessage())
-        CommandService.bindCommand(BukkitAPICall())
+        CommandService.bindCommand(RemoteAPICall())
         CommandService.bindCommand(LocalCommandHelp())
 
         RPCService.analyseFunctionList = mutableListOf()

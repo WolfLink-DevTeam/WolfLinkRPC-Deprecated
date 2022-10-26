@@ -23,9 +23,9 @@ class BroadcastTextMessage : IAnalyse {
                 for (groupID in PersistenceConfig.enabledGroups)
                 {
                     GlobalScope.launch {
-                        val sender = Gson().fromJson(datapack.jsonObject.get("sender").asString,SimpleSender::class.java)
+                        val sender = datapack.sender
                         val msg = datapack.jsonObject.get("msg").asString
-                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.senderName}|${sender.getName()}] $msg")
+                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.getQueueName()}|${sender.getSenderName()}] $msg")
                         else App.bot.getGroup(groupID)?.sendMessage(msg)
                     }
                 }

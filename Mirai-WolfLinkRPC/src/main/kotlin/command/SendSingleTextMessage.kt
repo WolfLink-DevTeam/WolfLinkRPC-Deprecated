@@ -19,10 +19,10 @@ class SendSingleTextMessage : ICommandFunction {
         val routingKey = args[0]
         val message = args.subList(1,args.size).joinToString(" ")
         val datapack = RPCDataPack.Builder()
-            .setDatapackBody(SimpleTextMessageBody(sender,message))
+            .setDatapackBody(SimpleTextMessageBody(message))
+            .setSender(sender)
             .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf(routingKey)))
             .setType(DataPackType.TEXT_MESSAGE)
-            .setSenderName(RPCConfiguration.getQueueName())
             .build()
         MQService.sendDataPack(datapack)
         return true

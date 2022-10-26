@@ -6,13 +6,21 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse;
+import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody;
+import org.wolflink.common.wolflinkrpc.service.MQService;
 import org.wolflink.paper.wolflinkrpc.App;
 
 @AnalyseFunction
 public class ServerClose extends SimpleCommandAnalyse implements IAnalyse {
+
+    @NotNull
+    @Override
+    public PermissionLevel getPermission(){ return PermissionLevel.OWNER; }
+
     @NotNull
     @Override
     public String getKeyword() {
@@ -31,6 +39,8 @@ public class ServerClose extends SimpleCommandAnalyse implements IAnalyse {
             Bukkit.getScheduler().runTaskLater(App.INSTANCE,() -> {
                 App.INSTANCE.getServer().dispatchCommand(Bukkit.getConsoleSender(),"stop");
             },20 * 10L);
+            MQService.INSTANCE.sendCommandFeedBack(rpcDataPack,
+                    new SimpleCommandResultBody(true,"指令执行成功"));
         };
     }
 }

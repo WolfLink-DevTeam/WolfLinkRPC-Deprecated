@@ -25,5 +25,5 @@ object RPCConfiguration : IConfiguration {
     override fun getMainClass(): Class<*> = App::class.java
 
     override fun getCommandFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.command"
-    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
+    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf("3401286177" to PermissionLevel.ONLY_MANAGER)
 }

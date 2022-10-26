@@ -17,21 +17,22 @@ class Test{}
 
 fun main()
 {
+    val str = "测试 前缀 ababa 123"
+    println("${str.removePrefix("测试 前缀").split(" ")}")
 
-    RPCCore.initSystem(MyConfiguration)
+//    RPCCore.initSystem(MyConfiguration)
 
-    val commandBody = SimpleCommandExecuteBody(ConsoleSender(MyConfiguration.getQueueName(),MyConfiguration.getClientType()),"测试")
-    val datapack = RPCDataPack.Builder()
-        .setSenderName(MyConfiguration.getQueueName())
-        .setType(DataPackType.COMMAND_EXECUTE)
-        .setDatapackBody(commandBody)
-        .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf("paper_1")))
-        .build()
-    val callback = object : CallbackFunction{
-    }
-    MQService.sendDataPack(datapack,true,callback,10)
-    val scanner = Scanner(System.`in`)
-    var test = scanner.nextInt()
+//    val commandBody = SimpleCommandExecuteBody("测试")
+//    val datapack = RPCDataPack.Builder()
+//        .setType(DataPackType.COMMAND_EXECUTE)
+//        .setDatapackBody(commandBody)
+//        .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf("paper_1")))
+//        .build()
+//    val callback = object : CallbackFunction{
+//    }
+//    MQService.sendDataPack(datapack,true,callback,10)
+//    val scanner = Scanner(System.`in`)
+//    var test = scanner.nextInt()
 //
 //    val textMessageBody : ITextMessageBody = object : ITextMessageBody{
 //        override fun getMsg(): String = "这是一段纯文本消息哦"

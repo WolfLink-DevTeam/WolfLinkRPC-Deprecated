@@ -17,9 +17,9 @@ class BroadcastTextMessage : IAnalyse {
     override fun getAction(): IAction {
         return object : IAction{
             override fun invoke(datapack: RPCDataPack) {
-                val sender = Gson().fromJson(datapack.jsonObject.get("sender").asString,SimpleSender::class.java)
+                val sender = datapack.sender
                 val msg = datapack.jsonObject.get("msg").asString
-                if(sender.getPlatform() != ClientType.ANONYMOUS) RPCLogger.info("${datapack.senderName} | ${sender.getName()} >> $msg")
+                if(sender.getPlatform() != ClientType.ANONYMOUS) RPCLogger.info("${datapack.sender.getQueueName()} | ${sender.getSenderName()} >> $msg")
                 else RPCLogger.info(msg)
             }
         }

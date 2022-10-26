@@ -17,7 +17,7 @@ object GroupMsgListener : ListenerHost {
         if(msg.startsWith(">"))
         {
             RPCConfiguration.getLogger().info("执行指令")
-            RPCService.analyseCommand(SimpleSender(this.senderName,this.sender.id.toString(),RPCConfiguration.getClientType()),msg)
+            RPCService.analyseCommand(SimpleSender(RPCConfiguration.getQueueName(),this.senderName,this.sender.id.toString(),RPCConfiguration.getClientType()),msg)
         }
     }
 }

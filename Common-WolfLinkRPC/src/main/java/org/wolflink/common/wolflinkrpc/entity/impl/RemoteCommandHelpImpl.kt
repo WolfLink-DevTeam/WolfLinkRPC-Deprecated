@@ -13,11 +13,9 @@ open class RemoteCommandHelpImpl(val helpText : String) : SimpleCommandAnalyse()
     override fun getAction(): IAction {
         return object : IAction {
             override fun invoke(datapack: RPCDataPack) {
-                MQService.sendCommandFeedBack(datapack, RPCCore.configuration.getQueueName(),
+                MQService.sendCommandFeedBack(datapack,
                     SimpleCommandResultBody(
-                        ConsoleSender(
-                            RPCCore.configuration.getQueueName(),
-                            RPCCore.configuration.getClientType()),false,
+                        false,
                         "-\n${BaseConfiguration.projectChineseName} 远程指令帮助 - ${RPCCore.configuration.getClientType().name}\n-\n$helpText\n-"))
             }
         }

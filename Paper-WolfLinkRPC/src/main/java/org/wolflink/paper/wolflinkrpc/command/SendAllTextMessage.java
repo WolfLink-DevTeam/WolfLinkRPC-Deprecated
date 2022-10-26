@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction;
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType;
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender;
 import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction;
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack;
@@ -27,12 +28,18 @@ public class SendAllTextMessage implements ICommandFunction {
     public boolean invoke(@NotNull ISender sender, @NotNull List<String> args) {
         String message = StringUtil.joinToString(args," ");
         RPCDataPack datapack = new RPCDataPack.Builder()
-                .setDatapackBody(new SimpleTextMessageBody(sender,message))
+                .setDatapackBody(new SimpleTextMessageBody(message))
+                .setSender(sender)
                 .addRoutingData(new RoutingData(ExchangeType.ALL_EXCHANGE, List.of("broadcast.all")))
                 .setType(DataPackType.TEXT_MESSAGE)
-                .setSenderName(App.RPC_CONFIGURATION.getQueueName())
                 .build();
         MQService.INSTANCE.sendDataPack(datapack);
         return true;
+    }
+
+    @NotNull
+    @Override
+    public PermissionLevel getPermission() {
+        return PermissionLevel.ADMIN;
     }
 }
