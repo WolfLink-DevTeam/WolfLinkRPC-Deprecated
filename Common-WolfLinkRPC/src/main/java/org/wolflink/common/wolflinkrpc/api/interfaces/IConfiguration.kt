@@ -34,7 +34,6 @@ interface IConfiguration {
     fun getAnalyseFunctionPackage() : String
     fun getMainClass() : Class<*>
     fun getCommandFunctionPackage() : String
-
     // key-用户唯一UUID value-权限等级
     fun getPermissionGroupMap() : MutableMap<String,PermissionLevel>
 }

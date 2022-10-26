@@ -12,7 +12,15 @@ object PersistenceCfg {
     var mcServerDataMap : MutableMap<String,MCServer> = mutableMapOf()
 
     private const val mainConfigFileName = "config.yml"
+    //服务器数据可读写
     private const val serverDataFileName = "ServerData.yml"
+
+    var host : String = "127.0.0.1"
+    var port : Int = 0
+    var username : String = "username"
+    var password : String = "password"
+    var queueName : String = "windows_default"
+    var debug : Boolean = false
 
     fun getMCServerData(serverName : String) : MCServer?
     {
@@ -74,8 +82,12 @@ object PersistenceCfg {
         {
             file.createNewFile()
             file.writeText("""
-                测试配置项1 = "abab"
-                测试配置项2 = "abab"
+                Host: "127.0.0.1"
+                Port: 10000
+                Username: "username"
+                Password: "password"
+                ClientTag: "default"
+                Debug: false
             """.trimIndent())
         }
         val str = String(file.inputStream().readBytes(),StandardCharsets.UTF_8)
@@ -85,6 +97,19 @@ object PersistenceCfg {
             if(_str.split(" = ").size != 2) continue
             val (key,value) = _str.split(" = ")
             map[key] = value
+        }
+        try {
+            host = map["Host"] as String
+            port = map["Port"] as Int
+            username = map["Username"] as String
+            password = map["Password"] as String
+            queueName = "windows_${map["ClientTag"] as String}"
+            debug = map["Debug"] as Boolean
+        } catch (e : ClassCastException)
+        {
+            e.printStackTrace()
+            RPCLogger.error("The config load failed , please check the stack trace !")
+            return
         }
         RPCLogger.info("Config has been loaded.")
     }
