@@ -1,17 +1,10 @@
 package org.wolflink.common.wolflinkrpc.api.interfaces.analyse
 
-import com.google.gson.Gson
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.enums.reach
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.RoutingData
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
-import org.wolflink.common.wolflinkrpc.service.MQService.sendDataPack
 import org.wolflink.common.wolflinkrpc.service.PermissionService
-import java.util.List
 
 //简单指令，数据包类型为COMMAND_EXECUTE，并且判断是否以关键词开头，提供getCommand方法，截取关键词之后的部分
 abstract class SimpleCommandAnalyse : IAnalyse {

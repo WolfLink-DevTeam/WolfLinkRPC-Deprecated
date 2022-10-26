@@ -1,4 +1,4 @@
-package org.wolflink.common.wolflinkrpc.entity.impl
+package org.wolflink.common.wolflinkrpc.entity.impl.command
 
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
@@ -6,9 +6,10 @@ import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction
-import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleTextMessageBody
+import org.wolflink.common.wolflinkrpc.entity.role.SimpleSender
 import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.MQService
 

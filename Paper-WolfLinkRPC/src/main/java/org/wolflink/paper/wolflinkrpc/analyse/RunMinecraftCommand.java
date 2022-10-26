@@ -8,8 +8,7 @@ import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse;
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender;
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody;
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody;
 import org.wolflink.common.wolflinkrpc.service.MQService;
 import org.wolflink.paper.wolflinkrpc.App;
 

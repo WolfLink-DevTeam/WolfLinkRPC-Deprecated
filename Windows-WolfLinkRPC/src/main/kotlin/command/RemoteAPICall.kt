@@ -3,7 +3,7 @@ package org.wolflink.windows.wolflinkrpc.command
 import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.impl.RemoteAPICallImpl
+import org.wolflink.common.wolflinkrpc.entity.impl.command.RemoteAPICallImpl
 import org.wolflink.windows.wolflinkrpc.RPCLogger
 
 @CommandFunction

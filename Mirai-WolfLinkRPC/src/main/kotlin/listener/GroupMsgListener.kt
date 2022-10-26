@@ -4,8 +4,7 @@ import net.mamoe.mirai.event.EventHandler
 import net.mamoe.mirai.event.ListenerHost
 import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.message.data.content
-import org.wolflink.common.wolflinkrpc.entity.CommandData
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
+import org.wolflink.common.wolflinkrpc.entity.role.SimpleSender
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.RPCConfiguration
 

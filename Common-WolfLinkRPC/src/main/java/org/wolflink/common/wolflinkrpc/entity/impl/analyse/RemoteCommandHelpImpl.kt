@@ -1,10 +1,11 @@
-package org.wolflink.common.wolflinkrpc.entity.impl
+package org.wolflink.common.wolflinkrpc.entity.impl.analyse
 
 import org.wolflink.common.wolflinkrpc.BaseConfiguration
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class RemoteCommandHelpImpl(val helpText : String) : SimpleCommandAnalyse() {
@@ -16,7 +17,8 @@ open class RemoteCommandHelpImpl(val helpText : String) : SimpleCommandAnalyse()
                 MQService.sendCommandFeedBack(datapack,
                     SimpleCommandResultBody(
                         false,
-                        "-\n${BaseConfiguration.projectChineseName} 远程指令帮助 - ${RPCCore.configuration.getClientType().name}\n-\n$helpText\n-"))
+                        "-\n${BaseConfiguration.projectChineseName} 远程指令帮助 - ${RPCCore.configuration.getClientType().name}\n-\n$helpText\n-")
+                )
             }
         }
     }

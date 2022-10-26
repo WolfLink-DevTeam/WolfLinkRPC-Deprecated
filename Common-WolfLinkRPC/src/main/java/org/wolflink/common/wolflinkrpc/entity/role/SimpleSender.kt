@@ -1,4 +1,4 @@
-package org.wolflink.common.wolflinkrpc.entity.impl
+package org.wolflink.common.wolflinkrpc.entity.role
 
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender

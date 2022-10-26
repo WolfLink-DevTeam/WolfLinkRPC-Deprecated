@@ -1,18 +1,3 @@
-import kotlinx.coroutines.delay
-import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
-import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
-import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
-import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ITextMessageBody
-import org.wolflink.common.wolflinkrpc.entity.CommandData
-import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.RoutingData
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandExecuteBody
-import org.wolflink.common.wolflinkrpc.service.MQService
-import java.util.Scanner
-
 class Test{}
 
 fun main()

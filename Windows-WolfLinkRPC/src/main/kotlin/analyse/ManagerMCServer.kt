@@ -5,11 +5,9 @@ import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 import org.wolflink.windows.wolflinkrpc.PersistenceCfg
-import org.wolflink.windows.wolflinkrpc.RPCConfiguration
 
 @AnalyseFunction
 class ManagerMCServer : SimpleCommandAnalyse() {
@@ -50,7 +48,8 @@ class ManagerMCServer : SimpleCommandAnalyse() {
                     else
                     {
                         MQService.sendCommandFeedBack(datapack,
-                            SimpleCommandResultBody(false,"指令参数不正确,可参考格式: 管理MC服务器 查询所有"))
+                            SimpleCommandResultBody(false,"指令参数不正确,可参考格式: 管理MC服务器 查询所有")
+                        )
                     }
                     return
                 }
@@ -62,12 +61,14 @@ class ManagerMCServer : SimpleCommandAnalyse() {
                         if(mcServer == null)
                         {
                             MQService.sendCommandFeedBack(datapack,
-                                SimpleCommandResultBody(false,"未找到服务器 ${commandParts[1]}"))
+                                SimpleCommandResultBody(false,"未找到服务器 ${commandParts[1]}")
+                            )
                             return
                         }
                         val result = mcServer.startServer()
                         MQService.sendCommandFeedBack(datapack,
-                            SimpleCommandResultBody(result.first,result.second))
+                            SimpleCommandResultBody(result.first,result.second)
+                        )
                         return
                     }
                     if(commandParts[0] == "关闭")
@@ -76,17 +77,20 @@ class ManagerMCServer : SimpleCommandAnalyse() {
                         if(mcServer == null)
                         {
                             MQService.sendCommandFeedBack(datapack,
-                                SimpleCommandResultBody(false,"未找到服务器 ${commandParts[1]}"))
+                                SimpleCommandResultBody(false,"未找到服务器 ${commandParts[1]}")
+                            )
                             return
                         }
                         val result = mcServer.stopServer()
                         MQService.sendCommandFeedBack(datapack,
-                            SimpleCommandResultBody(result.first,result.second))
+                            SimpleCommandResultBody(result.first,result.second)
+                        )
                         return
                     }
                 }
                 MQService.sendCommandFeedBack(datapack,
-                    SimpleCommandResultBody(false,"指令参数不正确,可参考格式: 管理MC服务器 启动 {服务器名}"))
+                    SimpleCommandResultBody(false,"指令参数不正确,可参考格式: 管理MC服务器 启动 {服务器名}")
+                )
             }
         }
     }

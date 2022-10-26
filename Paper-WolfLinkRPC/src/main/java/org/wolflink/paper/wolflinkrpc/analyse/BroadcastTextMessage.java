@@ -1,6 +1,5 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
-import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +10,6 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.ISender;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate;
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender;
 import org.wolflink.paper.wolflinkrpc.App;
 
 @AnalyseFunction

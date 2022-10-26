@@ -1,16 +1,11 @@
 package org.wolflink.common.wolflinkrpc.service
 
 import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
-import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ICommandResultBody
-import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.RoutingData
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleCommandResultBody
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 
 object RPCService {
 
@@ -37,7 +32,7 @@ object RPCService {
         }
         if(exist == 0)
         {
-            MQService.sendCommandFeedBack(datapack,SimpleCommandResultBody(false,"远程指令未能得到运行，可能的原因：权限不足、关键词不匹配"))
+            MQService.sendCommandFeedBack(datapack, SimpleCommandResultBody(false,"远程指令未能得到运行，可能的原因：权限不足、关键词不匹配"))
         }
         else
         {

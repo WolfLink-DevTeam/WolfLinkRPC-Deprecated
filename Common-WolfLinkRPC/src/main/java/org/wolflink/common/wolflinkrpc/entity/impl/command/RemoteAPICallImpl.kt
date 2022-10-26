@@ -1,4 +1,4 @@
-package org.wolflink.common.wolflinkrpc.entity.impl
+package org.wolflink.common.wolflinkrpc.entity.impl.command
 
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
@@ -8,6 +8,7 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandExecuteBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class RemoteAPICallImpl(private val callbackFunction: CallbackFunction) : ICommandFunction {

@@ -1,4 +1,4 @@
-package org.wolflink.common.wolflinkrpc.entity.impl
+package org.wolflink.common.wolflinkrpc.entity.impl.databody
 
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ICommandExecuteBody

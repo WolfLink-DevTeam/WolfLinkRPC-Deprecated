@@ -9,9 +9,8 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender;
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack;
 import org.wolflink.common.wolflinkrpc.entity.RoutingData;
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleTextMessageBody;
+import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleTextMessageBody;
 import org.wolflink.common.wolflinkrpc.service.MQService;
-import org.wolflink.paper.wolflinkrpc.App;
 import org.wolflink.paper.wolflinkrpc.utils.StringUtil;
 
 import java.util.List;

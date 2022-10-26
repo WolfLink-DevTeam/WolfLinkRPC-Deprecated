@@ -5,10 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender;
+import org.wolflink.common.wolflinkrpc.entity.role.SimpleSender;
 import org.wolflink.common.wolflinkrpc.service.RPCService;
 import org.wolflink.paper.wolflinkrpc.App;
-import org.wolflink.paper.wolflinkrpc.RPCConfiguration;
 
 public class OnPlayerChat implements Listener {
 

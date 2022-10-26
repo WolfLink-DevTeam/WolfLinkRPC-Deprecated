@@ -11,7 +11,6 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
 import org.wolflink.mirai.wolflinkrpc.App
 import org.wolflink.mirai.wolflinkrpc.PersistenceConfig
 

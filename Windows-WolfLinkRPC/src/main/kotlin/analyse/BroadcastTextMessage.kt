@@ -1,7 +1,6 @@
 package org.wolflink.windows.wolflinkrpc.analyse
 
 
-import com.google.gson.Gson
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
@@ -9,7 +8,6 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
 import org.wolflink.windows.wolflinkrpc.RPCLogger
 
 @AnalyseFunction

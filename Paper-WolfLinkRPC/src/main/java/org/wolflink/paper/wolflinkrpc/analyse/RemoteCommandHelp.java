@@ -1,7 +1,7 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.RemoteCommandHelpImpl;
+import org.wolflink.common.wolflinkrpc.entity.impl.analyse.RemoteCommandHelpImpl;
 
 @AnalyseFunction
 public class RemoteCommandHelp extends RemoteCommandHelpImpl {

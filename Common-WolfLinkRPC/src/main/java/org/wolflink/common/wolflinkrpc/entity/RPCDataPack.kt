@@ -6,8 +6,8 @@ import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.JsonSerializable
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.IDataPackBody
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender
-import org.wolflink.common.wolflinkrpc.entity.impl.SimpleSender
+import org.wolflink.common.wolflinkrpc.entity.role.ConsoleSender
+import org.wolflink.common.wolflinkrpc.entity.role.SimpleSender
 import org.wolflink.common.wolflinkrpc.service.MQService
 import java.util.UUID
 

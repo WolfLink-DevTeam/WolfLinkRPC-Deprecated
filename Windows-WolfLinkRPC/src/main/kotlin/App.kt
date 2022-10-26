@@ -1,7 +1,7 @@
 package org.wolflink.windows.wolflinkrpc
 
 import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.entity.impl.ConsoleSender
+import org.wolflink.common.wolflinkrpc.entity.role.ConsoleSender
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import java.util.Scanner
 
