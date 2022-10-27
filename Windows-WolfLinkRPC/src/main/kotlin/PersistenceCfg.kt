@@ -90,7 +90,7 @@ object PersistenceCfg {
             for (data in dataArray)
             {
                 if(data.isEmpty())continue
-                val (key,value) = data.split("||")
+                val (key,value) = data.split(" | ")
                 permissionMap[key] = PermissionLevel.valueOf(value.uppercase())
             }
             RPCLogger.info("PermissionData has been loaded.")
@@ -106,7 +106,7 @@ object PersistenceCfg {
         var text = ""
         for ((key,value) in permissionMap)
         {
-            text += "$key ${value.name.uppercase()}\n"
+            text += "$key | ${value.name.uppercase()}\n"
         }
         file.setWritable(true)
         file.writeText(text)

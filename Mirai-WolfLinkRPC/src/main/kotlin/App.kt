@@ -9,6 +9,7 @@ import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
 import org.wolflink.mirai.wolflinkrpc.analyse.RemoteCommandHelp
+import org.wolflink.mirai.wolflinkrpc.analyse.SetRemotePermission
 import org.wolflink.mirai.wolflinkrpc.command.*
 import org.wolflink.mirai.wolflinkrpc.listener.BotLoginListener
 import org.wolflink.mirai.wolflinkrpc.listener.GroupMsgListener
@@ -50,10 +51,12 @@ author("MikkoAyaka")
         CommandService.bindCommand(SendGroupTextMessage())
         CommandService.bindCommand(RemoteAPICall())
         CommandService.bindCommand(LocalCommandHelp())
+        CommandService.bindCommand(SetLocalPermission())
 
         RPCService.analyseFunctionList = mutableListOf()
         RPCService.analyseFunctionList.add(BroadcastTextMessage())
         RPCService.analyseFunctionList.add(RemoteCommandHelp())
+        RPCService.analyseFunctionList.add(SetRemotePermission())
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
     }

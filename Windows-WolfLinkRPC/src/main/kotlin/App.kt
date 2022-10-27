@@ -1,6 +1,7 @@
 package org.wolflink.windows.wolflinkrpc
 
 import org.wolflink.common.wolflinkrpc.RPCCore
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.entity.role.ConsoleSender
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import java.util.Scanner
@@ -10,6 +11,8 @@ object App
     fun enable()
     {
         PersistenceCfg.loadCfg()
+        // 为windows唯一用户设置权限
+        PersistenceCfg.permissionMap.put(PersistenceCfg.queueName,PermissionLevel.ONLY_MANAGER);
 
         RPCCore.initSystem(RPCConfiguration)
 

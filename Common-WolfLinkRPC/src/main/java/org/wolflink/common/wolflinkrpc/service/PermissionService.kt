@@ -10,4 +10,7 @@ object PermissionService {
         permissionGroupMap = configuration.getPermissionGroupMap()
     }
     fun getUserPermission(uniqueID : String) : PermissionLevel = permissionGroupMap[uniqueID] ?: PermissionLevel.DEFAULT
+    fun setUserPermission(uniqueID: String,permissionLevel: PermissionLevel){
+        permissionGroupMap[uniqueID] = permissionLevel
+    }
 }
