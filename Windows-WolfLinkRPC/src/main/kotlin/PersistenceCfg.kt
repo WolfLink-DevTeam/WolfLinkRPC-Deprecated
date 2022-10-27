@@ -93,6 +93,7 @@ object PersistenceCfg {
                 val (key,value) = data.split(" | ")
                 permissionMap[key] = PermissionLevel.valueOf(value.uppercase())
             }
+            permissionMap["测试用户的uniqueID"] = PermissionLevel.DEFAULT;
             RPCLogger.info("PermissionData has been loaded.")
         }
     }

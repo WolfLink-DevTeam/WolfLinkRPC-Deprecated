@@ -11,7 +11,6 @@ import org.wolflink.common.wolflinkrpc.service.PermissionService
 
 open class SetRemotePermissionImpl : SimpleCommandAnalyse() {
     override fun getKeyword(): String = "设置权限"
-
     override fun getAction(): IAction {
         return object : IAction{
             override fun invoke(datapack: RPCDataPack) {
@@ -24,12 +23,11 @@ open class SetRemotePermissionImpl : SimpleCommandAnalyse() {
                 }
                 // 为用户设置权限
                 try {
-
                     val senderPermission = datapack.sender.getPermission()
                     val targetPermission = PermissionLevel.valueOf(commandParts[1].uppercase())
                     if(targetPermission reach senderPermission)
                     {
-                        MQService.sendCommandFeedBack(datapack,SimpleCommandResultBody(false,"权限设置失败！你不能为其他人设置与你相同等级的权限，或者比你的权限等级更高的权限。}"))
+                        MQService.sendCommandFeedBack(datapack,SimpleCommandResultBody(false,"权限设置失败！你不能为其他人设置与你相同等级的权限，或者比你的权限等级更高的权限。"))
                         return
                     }
                     PermissionService.permissionGroupMap[commandParts[0]] = targetPermission

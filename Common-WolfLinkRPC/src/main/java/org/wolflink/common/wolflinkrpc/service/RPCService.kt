@@ -1,6 +1,7 @@
 package org.wolflink.common.wolflinkrpc.service
 
 import org.wolflink.common.wolflinkrpc.RPCCore
+import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
@@ -30,7 +31,7 @@ object RPCService {
                 exist++
             }
         }
-        if(exist == 0)
+        if(exist == 0 && datapack.type != DataPackType.COMMAND_RESULT)
         {
             MQService.sendCommandFeedBack(datapack, SimpleCommandResultBody(false,"远程指令未能得到运行，可能的原因：权限不足、关键词不匹配。\n如需提权，请为用户 ${datapack.sender.getUniqueID()} 设置权限。"))
         }

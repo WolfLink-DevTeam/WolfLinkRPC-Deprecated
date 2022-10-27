@@ -2,8 +2,11 @@ package org.wolflink.paper.wolflinkrpc;
 
 import lombok.Data;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +24,8 @@ public class PersistenceCfg {
     private boolean debug = false;
     private Map<String, PermissionLevel> permissionMap = new HashMap<>();
 
-    private FileConfiguration mainConfig;
+    private File mainConfigFile;
+    private YamlConfiguration mainConfig;
     private PersistenceCfg(){
         App.INSTANCE.saveDefaultConfig();
         loadCfg();
@@ -38,7 +42,8 @@ public class PersistenceCfg {
         saveMainConfig();
     }
     private void loadMainConfig(){
-        mainConfig = App.INSTANCE.getConfig();
+        mainConfigFile = new File(App.INSTANCE.getDataFolder(),"config.yml");
+        mainConfig = YamlConfiguration.loadConfiguration(mainConfigFile);
         host = mainConfig.getString("Host",host);
         port = mainConfig.getInt("Port",port);
         username = mainConfig.getString("Username",username);
@@ -58,6 +63,7 @@ public class PersistenceCfg {
                 continue;
             }
             permissionMap.put(args[0],level);
+            permissionMap.put("测试用户的uniqueID",PermissionLevel.DEFAULT);
         }
     }
     private void saveMainConfig(){
@@ -67,6 +73,11 @@ public class PersistenceCfg {
             permissionList.add(entry.getKey()+" | "+entry.getValue().name().toUpperCase());
         }
         mainConfig.set("PermissionList",permissionList);
-        App.INSTANCE.saveConfig();
+        try{
+            mainConfig.save(mainConfigFile);
+        } catch (IOException e){
+            e.printStackTrace();
+            App.RPC_LOGGER.error("插件在保存配置文件的过程中发生了问题，请见上方详细信息！");
+        }
     }
 }

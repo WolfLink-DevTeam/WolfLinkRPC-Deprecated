@@ -5,6 +5,7 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
 import org.wolflink.common.wolflinkrpc.RPCCore
+import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.RPCService
 import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
@@ -41,8 +42,6 @@ author("MikkoAyaka")
     }
     fun enablePlugin(){
         reloadConfig()
-        initEnabledGroups()
-        initBotManagers()
         registerListener()
 
         RPCCore.initSystem(RPCConfiguration)
@@ -59,14 +58,6 @@ author("MikkoAyaka")
         RPCService.analyseFunctionList.add(SetRemotePermission())
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
-    }
-    private fun initEnabledGroups(){
-        PersistenceConfig.enabledGroups.add(332607573L)
-        //PersistenceConfig.enabledGroups.add(152919430L)
-    }
-    private fun initBotManagers(){
-        PersistenceConfig.botManagers.add(3401286177L)
-        PersistenceConfig.botManagers.add(694163437L)
     }
 
     private fun registerListener(){

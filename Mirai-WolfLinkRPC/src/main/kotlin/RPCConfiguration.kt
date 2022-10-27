@@ -11,20 +11,20 @@ object RPCConfiguration : IConfiguration {
 
     override fun getClientType(): ClientType = ClientType.MIRAI
 
-    override fun getHost(): String = "43.248.79.66"
+    override fun getHost(): String = PersistenceConfig.host
 
     override fun getLogger(): ILogger = RPCLogger
 
     override fun getMainClass(): Class<*> = App::class.java
 
-    override fun getPassword(): String = "mikkoayaka"
-    override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = PersistenceConfig.permissionMap
+    override fun getPassword(): String = PersistenceConfig.password
+    override fun getPermissionGroupMap() = PersistenceConfig.permissionMap
 
-    override fun getPort(): Int = 55559
+    override fun getPort(): Int = PersistenceConfig.port
 
-    override fun getQueueName(): String = "mirai_1"
+    override fun getQueueName(): String = "${getClientType().name.lowercase()}_${PersistenceConfig.clientTag}"
 
-    override fun getUsername(): String = "testuser"
+    override fun getUsername(): String = PersistenceConfig.username
 
     override fun getCommandFunctionPackage() = "org.wolflink.mirai.wolflinkrpc.command"
 

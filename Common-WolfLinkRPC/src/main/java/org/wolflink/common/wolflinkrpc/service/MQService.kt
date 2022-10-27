@@ -78,6 +78,14 @@ object MQService {
     {
         if(callback && callbackFunction != null) consumer.addCallback(datapack, callbackFunction,failedSec)
 
+        RPCCore.logger.debug("""
+            [ Send Datapack ]
+            SenderName = ${datapack.sender.getSenderName()}
+            DatapackType = ${datapack.type.name}
+            JsonObject = ${datapack.jsonObject}
+        """.trimIndent())
+
+
         for (routingData in datapack.routingDataList)
         {
             for (routingKey in routingData.routingKeyList)

@@ -10,7 +10,6 @@ import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class RemoteCommandHelpImpl(val helpText : String) : SimpleCommandAnalyse() {
     override fun getKeyword(): String = "帮助"
-
     override fun getAction(): IAction {
         return object : IAction {
             override fun invoke(datapack: RPCDataPack) {

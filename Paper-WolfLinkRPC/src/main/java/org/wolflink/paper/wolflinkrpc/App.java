@@ -16,11 +16,10 @@ public final class App extends JavaPlugin {
     public void onEnable() {
         INSTANCE = this;
 
-        PersistenceCfg.getInstance();
 
         RPC_CONFIGURATION = new RPCConfiguration();
         RPC_LOGGER = new RPCLogger();
-        this.saveDefaultConfig();
+        PersistenceCfg.getInstance();
         // Plugin startup logic
         RPCCore.INSTANCE.initSystem(RPC_CONFIGURATION);
 

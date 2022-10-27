@@ -59,6 +59,14 @@ class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
         RPCCore.logger.info("RPCDatapack - receive a datapack")
         val datapackStr = String(body)
         val datapack = RPCDataPack.fromJson(datapackStr, RPCDataPack::class.java)
+
+        RPCCore.logger.debug("""
+            [ Receive Datapack ]
+            SenderName = ${datapack.sender.getSenderName()}
+            DatapackType = ${datapack.type.name}
+            JsonObject = ${datapack.jsonObject}
+        """.trimIndent())
+
         // 消费回调队列(只在不需要反馈的情况下消费回调)
         if(!datapack.type.needFeedback && callbackMap.containsKey(datapack.uuid))
         {

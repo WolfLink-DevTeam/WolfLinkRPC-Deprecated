@@ -12,7 +12,6 @@ import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class SendGroupTextMessageImpl : ICommandFunction {
     override fun getCommand(): String = "> 小组消息"
-
     override fun getPermission(): PermissionLevel = PermissionLevel.ADMIN
     override fun invoke(sender : ISender, args: List<String>): Boolean {
         if(args.size < 2)return false

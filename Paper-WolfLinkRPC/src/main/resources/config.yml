@@ -1,6 +1,6 @@
 Host: "127.0.0.1"
 Port: 10000
-UserName: "username"
+Username: "username"
 Password: "password"
 Debug: false
 PermissionList: []

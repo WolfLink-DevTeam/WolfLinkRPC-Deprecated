@@ -12,36 +12,36 @@ import java.util.*;
 public class RPCConfiguration implements IConfiguration {
 
     public Boolean getDebug(){
-        return App.INSTANCE.getConfig().getBoolean("Debug",false);
+        return PersistenceCfg.getInstance().isDebug();
     }
 
     @NotNull
     @Override
     public String getHost() {
-        return App.INSTANCE.getConfig().getString("Host","");
+        return PersistenceCfg.getInstance().getHost();
     }
 
     @Override
     public int getPort() {
-        return App.INSTANCE.getConfig().getInt("Port",10000);
+        return PersistenceCfg.getInstance().getPort();
     }
 
     @NotNull
     @Override
     public String getUsername() {
-        return App.INSTANCE.getConfig().getString("UserName","");
+        return PersistenceCfg.getInstance().getUsername();
     }
 
     @NotNull
     @Override
     public String getPassword() {
-        return App.INSTANCE.getConfig().getString("Password","");
+        return PersistenceCfg.getInstance().getPassword();
     }
 
     @NotNull
     @Override
     public String getQueueName() {
-        return App.INSTANCE.getConfig().getString("QueueName","");
+        return PersistenceCfg.getInstance().getQueueName();
     }
 
     @NotNull
@@ -90,9 +90,6 @@ public class RPCConfiguration implements IConfiguration {
     @Override
     public Map<String, PermissionLevel> getPermissionGroupMap()
     {
-        //TODO 把这个配置放到配置文件当中
-        Map<String,PermissionLevel> map = new HashMap<>();
-        map.put("3401286177",PermissionLevel.ONLY_MANAGER);
-        return map;
+        return PersistenceCfg.getInstance().getPermissionMap();
     }
 }
