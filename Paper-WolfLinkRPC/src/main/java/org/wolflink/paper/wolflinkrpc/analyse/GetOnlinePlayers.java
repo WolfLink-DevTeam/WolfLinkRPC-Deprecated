@@ -11,7 +11,7 @@ import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultB
 import org.wolflink.common.wolflinkrpc.service.MQService;
 
 @AnalyseFunction
-public class GetOnlinePlayers extends SimpleCommandAnalyse implements IAnalyse{
+public class GetOnlinePlayers extends SimpleCommandAnalyse{
 
     @NotNull
     @Override

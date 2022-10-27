@@ -14,7 +14,7 @@ open class SendAllTextMessageImpl : ICommandFunction {
     override fun getCommand(): String = "> 广播消息"
 
     override fun getPermission(): PermissionLevel = PermissionLevel.ADMIN
-    override fun invoke(sender : ISender, args: List<String>): Boolean {
+    override fun invoke(sender : ISender, args: List<String>): Pair<Boolean,String> {
         val message = args.joinToString(" ")
         val datapack = RPCDataPack.Builder()
             .setDatapackBody(SimpleTextMessageBody(message))
@@ -23,6 +23,6 @@ open class SendAllTextMessageImpl : ICommandFunction {
             .setType(DataPackType.TEXT_MESSAGE)
             .build()
         MQService.sendDataPack(datapack)
-        return true
+        return Pair(true,"Command executed successfully .")
     }
 }

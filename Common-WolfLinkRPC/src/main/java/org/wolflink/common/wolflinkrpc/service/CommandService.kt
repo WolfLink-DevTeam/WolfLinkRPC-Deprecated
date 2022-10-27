@@ -61,14 +61,14 @@ object CommandService {
     }
 
     @Deprecated("应该由RPCService进行调用，请使用RPCService::analyseCommand")
-    fun runCommand(sender : ISender, command : String) : Boolean
+    fun runCommand(sender : ISender, command : String) : Pair<Boolean,String>
     {
         val (index,commandData) = findCommand(command)
 
         RPCCore.logger.debug("find command ${commandData.commandText}")
 
-        //TODO 阻止调用，但是未通知阻止原因，可以换用Pair(Boolean,String)
-        if(sender.getPermission() notReach commandData.permission) return false
+        //TODO 阻止调用，但是未通知阻止原因，可以换用 Pair(Boolean,String)
+        if(sender.getPermission() notReach commandData.permission) return Pair(false,"Permission denied , require ${commandData.permission.name}")
         val commandParts = command.split(" ")
         val commandArgs = commandParts.subList(index,commandParts.size)
 
@@ -105,7 +105,7 @@ object CommandService {
         bindCommand(iCommandFunction.getCommand(),iCommandFunction::invoke,iCommandFunction.getPermission())
     }
     // 为一串指令绑定action
-    private fun bindCommand(command: String,action: (sender : ISender, args : List<String>) -> Boolean,permission : PermissionLevel)
+    private fun bindCommand(command: String,action: (sender : ISender, args : List<String>) -> Pair<Boolean,String>,permission : PermissionLevel)
     {
         var tempRoot = commandRoot //根指针
         val commandParts = command.split(" ")

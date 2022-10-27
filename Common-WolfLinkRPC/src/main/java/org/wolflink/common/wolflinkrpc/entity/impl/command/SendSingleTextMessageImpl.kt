@@ -11,8 +11,8 @@ import org.wolflink.common.wolflinkrpc.service.MQService
 
 open class SendSingleTextMessageImpl : ICommandFunction {
     override fun getCommand(): String = "> 互通消息"
-    override fun invoke(sender : ISender, args: List<String>): Boolean {
-        if(args.size < 2)return false
+    override fun invoke(sender : ISender, args: List<String>):  Pair<Boolean,String> {
+        if(args.size < 2)return Pair(false,"Not enough arguments .")
         val routingKey = args[0]
         val message = args.subList(1,args.size).joinToString(" ")
         val datapack = RPCDataPack.Builder()
@@ -22,6 +22,6 @@ open class SendSingleTextMessageImpl : ICommandFunction {
             .setType(DataPackType.TEXT_MESSAGE)
             .build()
         MQService.sendDataPack(datapack)
-        return true
+        return Pair(true,"Command executed successfully .")
     }
 }

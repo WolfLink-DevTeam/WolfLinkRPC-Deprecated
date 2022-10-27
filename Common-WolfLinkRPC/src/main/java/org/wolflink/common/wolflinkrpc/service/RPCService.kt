@@ -41,6 +41,6 @@ object RPCService {
         }
     }
     //将字符串视为命令进行解析，返回执行结果
-    fun analyseCommand(sender: ISender, command : String) : Boolean = CommandService.runCommand(sender,command)
+    fun analyseCommand(sender: ISender, command : String) : Pair<Boolean,String> = CommandService.runCommand(sender,command)
 
 }

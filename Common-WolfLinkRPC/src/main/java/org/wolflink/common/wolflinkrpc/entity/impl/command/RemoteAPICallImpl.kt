@@ -17,8 +17,8 @@ open class RemoteAPICallImpl(private val callbackFunction: CallbackFunction) : I
     override fun getCommand(): String = "> 接口调用"
     override fun getPermission(): PermissionLevel = PermissionLevel.API_USER
 
-    override fun invoke(sender : ISender, args: List<String>): Boolean {
-        if(args.size < 2)return false
+    override fun invoke(sender : ISender, args: List<String>): Pair<Boolean,String> {
+        if(args.size < 2)return Pair(false,"Not enough arguments .")
         val routingKey = args[0]
         val command = args.subList(1,args.size).joinToString(" ")
         val datapack = RPCDataPack.Builder()
@@ -28,6 +28,6 @@ open class RemoteAPICallImpl(private val callbackFunction: CallbackFunction) : I
             .setSender(sender)
             .build()
         MQService.sendDataPack(datapack,true,callbackFunction,10)
-        return true
+        return Pair(true,"Command executed successfully .")
     }
 }

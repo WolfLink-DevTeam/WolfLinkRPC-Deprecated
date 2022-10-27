@@ -15,5 +15,4 @@ object PersistenceConfig : AutoSavePluginData("wolflinkrpc_config") {
     var username : String by value("username")
     var password : String by value("password")
     var clientTag : String by value("default")
-
 }

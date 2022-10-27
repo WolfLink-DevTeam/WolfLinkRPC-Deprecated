@@ -13,7 +13,7 @@ import org.wolflink.common.wolflinkrpc.service.MQService;
 import org.wolflink.paper.wolflinkrpc.App;
 
 @AnalyseFunction
-public class RunMinecraftCommand extends SimpleCommandAnalyse implements IAnalyse {
+public class RunMinecraftCommand extends SimpleCommandAnalyse {
 
     @NotNull
     @Override

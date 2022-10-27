@@ -16,7 +16,7 @@ import org.wolflink.common.wolflinkrpc.service.MQService
 open class LocalCommandHelpImpl : ICommandFunction {
     override fun getCommand(): String = "> 帮助"
 
-    override fun invoke(sender: ISender, args: List<String>): Boolean {
+    override fun invoke(sender: ISender, args: List<String>): Pair<Boolean,String> {
 
         //向自己发送匿名数据包
 
@@ -30,6 +30,6 @@ open class LocalCommandHelpImpl : ICommandFunction {
             .setType(DataPackType.TEXT_MESSAGE)
             .build()
         MQService.sendDataPack(datapack)
-        return true
+        return Pair(true,"Command executed successfully .")
     }
 }

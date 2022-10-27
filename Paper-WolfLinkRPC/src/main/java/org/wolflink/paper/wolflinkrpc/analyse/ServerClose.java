@@ -15,7 +15,7 @@ import org.wolflink.common.wolflinkrpc.service.MQService;
 import org.wolflink.paper.wolflinkrpc.App;
 
 @AnalyseFunction
-public class ServerClose extends SimpleCommandAnalyse implements IAnalyse {
+public class ServerClose extends SimpleCommandAnalyse {
 
     @NotNull
     @Override

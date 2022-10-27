@@ -32,7 +32,8 @@ object App
         var inputString = scanner.nextLine()
         while (inputString != "stop")
         {
-            RPCService.analyseCommand(ConsoleSender(RPCConfiguration.getQueueName(),RPCConfiguration.getClientType()),inputString)
+            val pair = RPCService.analyseCommand(ConsoleSender(RPCConfiguration.getQueueName(),RPCConfiguration.getClientType()),inputString)
+            RPCLogger.info("Command status : ${pair.first} Info : ${pair.second}")
             inputString = scanner.nextLine()
         }
         disable()

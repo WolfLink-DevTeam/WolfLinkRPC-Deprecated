@@ -1,5 +1,6 @@
 package org.wolflink.paper.wolflinkrpc.listener;
 
+import kotlin.Pair;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,14 +19,15 @@ public class OnPlayerChat implements Listener {
         if(msg.startsWith(">"))
         {
             Player p = e.getPlayer();
-            if(RPCService.INSTANCE.analyseCommand(new SimpleSender(App.RPC_CONFIGURATION.getQueueName(),p.getName(),p.getUniqueId().toString(), App.RPC_CONFIGURATION.getClientType()),msg))
+            Pair<Boolean,String> ktPair = RPCService.INSTANCE.analyseCommand(new SimpleSender(App.RPC_CONFIGURATION.getQueueName(),p.getName(),p.getUniqueId().toString(), App.RPC_CONFIGURATION.getClientType()),msg);
+            if(ktPair.getFirst())
             {
-                p.sendMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" \u00a7f指令执行成功");
+                p.sendMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" \u00a7f"+ktPair.getSecond());
                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,2);
             }
             else
             {
-                p.sendMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" \u00a7c指令执行失败");
+                p.sendMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" \u00a7c"+ktPair.getSecond());
                 p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO,1,1);
             }
         }
