@@ -132,3 +132,5 @@ pause
 4. 修改配置文件，内容与Mirai/Bukkit端几乎一致
 5. 再次运行，连接成功即视为配置完毕，在控制台输入 > 帮助 > 查询本地指令帮助。
 
+### 开源协议
+开源协议 GNU Affero General Public License v3.0 [https://choosealicense.com/licenses/agpl-3.0/#]
