@@ -1,5 +1,5 @@
 <a name="d3n6K"></a>
-### [WolfLink-RPC 开发者指南](https://www.yuque.com/docs/share/70b4b729-7842-4f0c-b4e7-aacbd35f055a?)
+### [WolfLink-RPC 开发者指南](https://github.com/MikkoAyaka/WolfLinkRPC/wiki/%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97)
 <a name="OuzWl"></a>
 ### 系统介绍
 <a name="Hw2Yl"></a>
