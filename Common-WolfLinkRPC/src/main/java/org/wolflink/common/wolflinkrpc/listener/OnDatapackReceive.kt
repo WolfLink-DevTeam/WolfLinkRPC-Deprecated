@@ -62,7 +62,7 @@ class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
 
         RPCCore.logger.debug("""
             [ Receive Datapack ]
-            SenderName = ${datapack.sender.getSenderName()}
+            SenderName = ${datapack.sender.userName}
             DatapackType = ${datapack.type.name}
             JsonObject = ${datapack.jsonObject}
         """.trimIndent())

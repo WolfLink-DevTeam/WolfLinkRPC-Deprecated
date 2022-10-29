@@ -6,7 +6,6 @@ import kotlinx.coroutines.launch
 import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate
@@ -24,7 +23,7 @@ class BroadcastTextMessage : IAnalyse {
                     GlobalScope.launch {
                         val sender = datapack.sender
                         val msg = datapack.jsonObject.get("msg").asString
-                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.getQueueName()}|${sender.getSenderName()}] $msg")
+                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.getQueueName()}|${sender.getUserName()}] $msg")
                         else App.bot.getGroup(groupID)?.sendMessage(msg)
                     }
                 }

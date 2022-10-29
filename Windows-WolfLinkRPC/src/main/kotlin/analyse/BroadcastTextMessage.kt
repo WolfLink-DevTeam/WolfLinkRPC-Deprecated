@@ -17,7 +17,7 @@ class BroadcastTextMessage : IAnalyse {
             override fun invoke(datapack: RPCDataPack) {
                 val sender = datapack.sender
                 val msg = datapack.jsonObject.get("msg").asString
-                if(sender.getPlatform() != ClientType.ANONYMOUS) RPCLogger.info("${datapack.sender.getQueueName()} | ${sender.getSenderName()} >> $msg")
+                if(sender.getPlatform() != ClientType.ANONYMOUS) RPCLogger.info("${datapack.sender.getQueueName()} | ${sender.getUserName()} >> $msg")
                 else RPCLogger.info(msg)
             }
         }

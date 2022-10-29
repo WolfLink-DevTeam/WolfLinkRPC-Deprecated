@@ -4,9 +4,9 @@ import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
-import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
+import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 
 object RPCService {
 
@@ -33,7 +33,7 @@ object RPCService {
         }
         if(exist == 0 && datapack.type != DataPackType.COMMAND_RESULT)
         {
-            MQService.sendCommandFeedBack(datapack, SimpleCommandResultBody(false,"远程指令未能得到运行，可能的原因：权限不足、关键词不匹配。\n如需提权，请为用户 ${datapack.sender.getUniqueID()} 设置权限。"))
+            MQService.sendCommandFeedBack(datapack, SimpleCommandResultBody(false,"远程指令未能得到运行，可能的原因：权限不足、关键词不匹配。\n如需提权，请为用户 ${datapack.sender.uniqueID} 设置权限。"))
         }
         else
         {
@@ -41,6 +41,6 @@ object RPCService {
         }
     }
     //将字符串视为命令进行解析，返回执行结果
-    fun analyseCommand(sender: ISender, command : String) : Pair<Boolean,String> = CommandService.runCommand(sender,command)
+    fun analyseCommand(sender: RPCUser, command : String) : Pair<Boolean,String> = CommandService.runCommand(sender,command)
 
 }

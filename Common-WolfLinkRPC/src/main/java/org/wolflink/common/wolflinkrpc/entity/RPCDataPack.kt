@@ -3,39 +3,40 @@ package org.wolflink.common.wolflinkrpc.entity
 import com.google.gson.JsonObject
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.JsonSerializable
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.IDataPackBody
-import org.wolflink.common.wolflinkrpc.entity.role.ConsoleSender
-import org.wolflink.common.wolflinkrpc.entity.role.SimpleSender
+import org.wolflink.common.wolflinkrpc.entity.role.ConsoleUser
+import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 import org.wolflink.common.wolflinkrpc.service.MQService
 import java.util.UUID
 
 
 data class RPCDataPack(
-    var sender : SimpleSender = ConsoleSender(MQService.queueName,RPCCore.configuration.getClientType()), // 发送者用户名称
-    var type : DataPackType = DataPackType.TEXT_MESSAGE, // 数据包功能类型
-    var jsonObject : JsonObject = JsonObject(), // 数据包内容
     var uuid: UUID = UUID.randomUUID(), // 数据包唯一ID
-    val routingDataList: MutableList<RoutingData> = mutableListOf() //路由数据
+    var type : DataPackType = DataPackType.TEXT_MESSAGE, // 数据包功能类型
+    var sender : RPCUser = ConsoleUser(MQService.queueName,RPCCore.configuration.getClientType()), // 发送者用户名称
+    var receivers : List<RPCUser>, // 接收者数据
+    var jsonObject : JsonObject // 数据包内容
                        )
 {
     companion object : JsonSerializable<RPCDataPack>
-    fun addRoutingData(routingData: RoutingData)
-    {
-        routingDataList.add(routingData)
-    }
     class Builder
     {
-        private var sender : SimpleSender? = null
+        private var sender : RPCUser? = null
+        private var receivers : MutableList<RPCUser> = mutableListOf()
         private var type : DataPackType? = null
         private var datapackBody : IDataPackBody? = null
         private var uuid : UUID? = null
         private var routingDataList : MutableList<RoutingData> = mutableListOf()
 
-        fun setSender(sender: ISender) : Builder
+        fun setSender(sender: RPCUser) : Builder
         {
-            this.sender = SimpleSender(sender.getQueueName(),sender.getSenderName(),sender.getUniqueID(),sender.getPlatform())
+            this.sender = RPCUser(sender.queueName,sender.clientType,sender.userName,sender.uniqueID)
+            return this
+        }
+        fun addReceiver(receiver : RPCUser) : Builder
+        {
+            receivers.add(RPCUser(receiver.queueName,receiver.clientType,receiver.userName,receiver.uniqueID))
             return this
         }
         fun setType(type: DataPackType) : Builder
@@ -53,19 +54,14 @@ data class RPCDataPack(
             this.uuid = uuid
             return this
         }
-        fun addRoutingData(routingData: RoutingData) : Builder
-        {
-            routingDataList.add(routingData)
-            return this
-        }
         fun build() : RPCDataPack
         {
             return RPCDataPack(
-                sender ?: ConsoleSender(MQService.queueName,RPCCore.configuration.getClientType()),
-                type ?: DataPackType.TEXT_MESSAGE,
-                datapackBody?.toJsonObject() ?: JsonObject(),
                 uuid ?: UUID.randomUUID(),
-                routingDataList
+                type ?: DataPackType.TEXT_MESSAGE,
+                sender ?: ConsoleUser(MQService.queueName,RPCCore.configuration.getClientType()),
+                receivers,
+                datapackBody?.toJsonObject() ?: JsonObject()
             )
         }
     }

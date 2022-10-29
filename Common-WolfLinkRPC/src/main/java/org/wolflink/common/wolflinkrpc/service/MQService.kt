@@ -17,6 +17,8 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ICommandResultBod
 import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ITextMessageBody
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.RoutingData
+import org.wolflink.common.wolflinkrpc.entity.role.BroadcastReceiver
+import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 import org.wolflink.common.wolflinkrpc.listener.OnDatapackReceive
 
 object MQService {
@@ -80,13 +82,15 @@ object MQService {
 
         RPCCore.logger.debug("""
             [ Send Datapack ]
-            SenderName = ${datapack.sender.getSenderName()}
+            SenderName = ${datapack.sender.userName}
             DatapackType = ${datapack.type.name}
             JsonObject = ${datapack.jsonObject}
         """.trimIndent())
 
+        val routingDataList = mutableListOf<RoutingData>()
+        datapack.receivers.forEach{routingDataList.add(it.routingData)}
 
-        for (routingData in datapack.routingDataList)
+        for (routingData in routingDataList)
         {
             for (routingKey in routingData.routingKeyList)
             {
@@ -107,13 +111,13 @@ object MQService {
     fun sendCommandFeedBack(originPack : RPCDataPack,feedbackBody : ICommandResultBody)
     {
         val feedbackPack = RPCDataPack.Builder()
-            .addRoutingData(RoutingData(ExchangeType.SINGLE_EXCHANGE, mutableListOf(originPack.sender.getQueueName())))
+            .addReceiver(originPack.sender)
             .setType(DataPackType.COMMAND_RESULT)
             .setUUID(originPack.uuid)
             .setDatapackBody(feedbackBody)
             .build()
         sendDataPack(feedbackPack)
-        RPCCore.logger.info("Send a feedback to ${originPack.sender.getQueueName()}")
+        RPCCore.logger.info("Send a feedback to ${originPack.sender.queueName}")
     }
     fun sendOnlineMessage() {
         val textMessageBody: ITextMessageBody = object : ITextMessageBody {
@@ -123,8 +127,7 @@ object MQService {
         }
         val rpcDataPack = RPCDataPack.Builder()
             .setDatapackBody(textMessageBody)
-            .setType(DataPackType.TEXT_MESSAGE)
-            .addRoutingData(RoutingData(ExchangeType.ALL_EXCHANGE, mutableListOf("broadcast.all")))
+            .addReceiver(BroadcastReceiver())
             .build()
         sendDataPack(rpcDataPack)
     }
@@ -138,7 +141,7 @@ object MQService {
         val rpcDataPack = RPCDataPack.Builder()
             .setDatapackBody(textMessageBody)
             .setType(DataPackType.TEXT_MESSAGE)
-            .addRoutingData(RoutingData(ExchangeType.ALL_EXCHANGE, mutableListOf("broadcast.all")))
+            .addReceiver(BroadcastReceiver())
             .build()
         sendDataPack(rpcDataPack)
     }

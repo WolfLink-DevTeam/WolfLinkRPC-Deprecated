@@ -6,9 +6,9 @@ import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.enums.notReach
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
-import org.wolflink.common.wolflinkrpc.api.interfaces.ISender
 import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction
 import org.wolflink.common.wolflinkrpc.entity.CommandData
+import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 import org.wolflink.common.wolflinkrpc.utils.ReflectionUtil
 
 object CommandService {
@@ -61,7 +61,7 @@ object CommandService {
     }
 
     @Deprecated("应该由RPCService进行调用，请使用RPCService::analyseCommand")
-    fun runCommand(sender : ISender, command : String) : Pair<Boolean,String>
+    fun runCommand(sender : RPCUser, command : String) : Pair<Boolean,String>
     {
         val (index,commandData) = findCommand(command)
 
@@ -105,7 +105,7 @@ object CommandService {
         bindCommand(iCommandFunction.getCommand(),iCommandFunction::invoke,iCommandFunction.getPermission())
     }
     // 为一串指令绑定action
-    private fun bindCommand(command: String,action: (sender : ISender, args : List<String>) -> Pair<Boolean,String>,permission : PermissionLevel)
+    private fun bindCommand(command: String, action: (sender : RPCUser, args : List<String>) -> Pair<Boolean,String>, permission : PermissionLevel)
     {
         var tempRoot = commandRoot //根指针
         val commandParts = command.split(" ")
