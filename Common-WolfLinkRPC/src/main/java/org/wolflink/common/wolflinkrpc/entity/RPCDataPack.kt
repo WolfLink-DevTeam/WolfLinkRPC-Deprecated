@@ -31,12 +31,12 @@ data class RPCDataPack(
 
         fun setSender(sender: RPCUser) : Builder
         {
-            this.sender = RPCUser(sender.queueName,sender.clientType,sender.userName,sender.uniqueID)
+            this.sender = sender
             return this
         }
         fun addReceiver(receiver : RPCUser) : Builder
         {
-            receivers.add(RPCUser(receiver.queueName,receiver.clientType,receiver.userName,receiver.uniqueID))
+            receivers.add(receiver)
             return this
         }
         fun setType(type: DataPackType) : Builder

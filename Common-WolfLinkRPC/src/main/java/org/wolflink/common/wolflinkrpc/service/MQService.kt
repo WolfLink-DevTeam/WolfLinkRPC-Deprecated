@@ -84,6 +84,7 @@ object MQService {
             [ Send Datapack ]
             SenderName = ${datapack.sender.userName}
             DatapackType = ${datapack.type.name}
+            Receiver = ${datapack.receivers.map { it.routingData.routingKeyList }.toCollection(mutableListOf())}
             JsonObject = ${datapack.jsonObject}
         """.trimIndent())
 

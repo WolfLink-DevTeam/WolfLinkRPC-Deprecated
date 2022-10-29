@@ -22,7 +22,7 @@ open class FileViewImpl : SimpleCommandAnalyse() {
                 val rootFile = File(filePath)
                 if(rootFile.exists())
                 {
-                    val subFiles = rootFile.listFiles()
+                    val subFiles = rootFile.listFiles() ?: arrayOf()
                     var resultMsg = "-\n文件夹 $filePath 包含以下文件\n-\n"
                     for (file in subFiles)
                     {
