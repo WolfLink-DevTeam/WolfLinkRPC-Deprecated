@@ -8,9 +8,7 @@ import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.RPCService
-import org.wolflink.mirai.wolflinkrpc.analyse.BroadcastTextMessage
-import org.wolflink.mirai.wolflinkrpc.analyse.RemoteCommandHelp
-import org.wolflink.mirai.wolflinkrpc.analyse.SetRemotePermission
+import org.wolflink.mirai.wolflinkrpc.analyse.*
 import org.wolflink.mirai.wolflinkrpc.command.*
 import org.wolflink.mirai.wolflinkrpc.listener.BotLoginListener
 import org.wolflink.mirai.wolflinkrpc.listener.GroupMsgListener
@@ -56,6 +54,9 @@ author("MikkoAyaka")
         RPCService.analyseFunctionList.add(BroadcastTextMessage())
         RPCService.analyseFunctionList.add(RemoteCommandHelp())
         RPCService.analyseFunctionList.add(SetRemotePermission())
+        RPCService.analyseFunctionList.add(ChangeQQGroup())
+        RPCService.analyseFunctionList.add(FileView())
+        RPCService.analyseFunctionList.add(QueryPersonalInfo())
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
     }

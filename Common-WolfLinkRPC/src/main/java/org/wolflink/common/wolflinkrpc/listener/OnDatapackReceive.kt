@@ -56,7 +56,7 @@ class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
     override fun handleDelivery(consumerTag: String?, envelope: Envelope?, properties: AMQP.BasicProperties?, body: ByteArray?)
     {
         if(body == null)return
-        RPCCore.logger.info("RPCDatapack - receive a datapack")
+        RPCCore.logger.debug("RPCDatapack - receive a datapack")
         val datapackStr = String(body)
         val datapack = RPCDataPack.fromJson(datapackStr, RPCDataPack::class.java)
 
@@ -70,12 +70,12 @@ class OnDatapackReceive(channel: Channel) : DefaultConsumer(channel) {
         // 消费回调队列(只在不需要反馈的情况下消费回调)
         if(!datapack.type.needFeedback && callbackMap.containsKey(datapack.uuid))
         {
-            RPCCore.logger.info("RPCDatapack - consume the feedback")
+            RPCCore.logger.debug("RPCDatapack - consume the feedback")
             callbackMap[datapack.uuid]?.success(datapack)
             callbackMap.remove(datapack.uuid)
             return
         }
-        RPCCore.logger.info("RPCDatapack - analyse")
+        RPCCore.logger.debug("RPCDatapack - analyse")
         // 解析数据包，对内容进行处理
         RPCService.analyseDatapack(datapack)
     }

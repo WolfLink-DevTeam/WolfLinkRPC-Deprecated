@@ -21,18 +21,11 @@ class ReadWindowsFile : SimpleCommandAnalyse() {
             override fun invoke(datapack: RPCDataPack) {
                 val originCommand = datapack.jsonObject["command"].asString
                 val command = getCommand(originCommand)
-                val commandParts = command.split(" ")
-                if(commandParts.size < 2)
-                {
-                    MQService.sendCommandFeedBack(datapack,
-                        SimpleCommandResultBody(false,"指令格式错误,可参考格式: 读取文件 D|Test|myFile txt")
-                    )
-                    return
-                }
-                val path = commandParts[0].replace("|","/")
-                val type: ReadableFileType
-                try {
-                    type = ReadableFileType.valueOf(commandParts[1].uppercase())
+                val path = command.replace("|","/")
+                val file = File(path)
+                val type: String = file.extension
+                try{
+                    ReadableFileType.valueOf(type.uppercase())
                 } catch (e : java.lang.IllegalArgumentException)
                 {
                     MQService.sendCommandFeedBack(datapack,
@@ -41,7 +34,6 @@ class ReadWindowsFile : SimpleCommandAnalyse() {
                     )
                     return
                 }
-                val file = File("$path.${type.name.lowercase()}")
                 if(file.exists() && file.canRead())
                 {
                     val text = file.readText()

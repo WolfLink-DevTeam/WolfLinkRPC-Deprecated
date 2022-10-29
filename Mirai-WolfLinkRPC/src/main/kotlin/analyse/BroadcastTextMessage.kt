@@ -23,7 +23,7 @@ class BroadcastTextMessage : IAnalyse {
                     GlobalScope.launch {
                         val sender = datapack.sender
                         val msg = datapack.jsonObject.get("msg").asString
-                        if(sender.getPlatform() != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.getQueueName()}|${sender.getUserName()}] $msg")
+                        if(sender.clientType != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.queueName}|${sender.userName}] $msg")
                         else App.bot.getGroup(groupID)?.sendMessage(msg)
                     }
                 }

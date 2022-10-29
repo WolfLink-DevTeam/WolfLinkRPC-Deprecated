@@ -1,9 +1,17 @@
+import java.io.File
+
 class Test{}
 
 fun main()
 {
-    val str = "测试 前缀 ababa 123"
-    println("${str.removePrefix("测试 前缀").split(" ")}")
+    val file = File("E:\\")
+    println("file exist ? ${file.exists()}")
+    val files = file.listFiles()
+    for (f in files)
+    {
+        println(f.path)
+    }
+
 
 //    RPCCore.initSystem(MyConfiguration)
 
