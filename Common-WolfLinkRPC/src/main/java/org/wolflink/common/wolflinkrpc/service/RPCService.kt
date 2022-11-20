@@ -3,7 +3,7 @@ package org.wolflink.common.wolflinkrpc.service
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IRemoteHandler
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
@@ -11,13 +11,13 @@ import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 object RPCService {
 
     // 判断谓词 执行函数 映射表
-    lateinit var analyseFunctionList : MutableList<IAnalyse>
+    lateinit var analyseFunctionList : MutableList<IRemoteHandler>
 
 
     //初始化数据包处理服务
     fun init(configuration: IConfiguration)
     {
-        analyseFunctionList = configuration.getAnalyseFunctionList()
+        analyseFunctionList = configuration.getRemoteCallHandlerList()
     }
     //解析数据包，根据谓词进行判断，谓词判断通过执行相应方法
     fun analyseDatapack(datapack : RPCDataPack)

@@ -7,7 +7,7 @@ import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
 
 object RPCConfiguration : IConfiguration {
 
-    override fun getAnalyseFunctionPackage(): String = "org.wolflink.mirai.wolflinkrpc.analyse"
+    override fun getRemoteCallHandlerPackage(): String = "org.wolflink.mirai.wolflinkrpc.handler.remote"
 
     override fun getClientType(): ClientType = ClientType.MIRAI
 
@@ -26,6 +26,6 @@ object RPCConfiguration : IConfiguration {
 
     override fun getUsername(): String = PersistenceConfig.username
 
-    override fun getCommandFunctionPackage() = "org.wolflink.mirai.wolflinkrpc.command"
+    override fun getLocalCallHandlerPackage() = "org.wolflink.mirai.wolflinkrpc.handler.local"
 
 }

@@ -5,11 +5,10 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
 import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.service.CommandService
 import org.wolflink.common.wolflinkrpc.service.RPCService
-import org.wolflink.mirai.wolflinkrpc.analyse.*
-import org.wolflink.mirai.wolflinkrpc.command.*
+import org.wolflink.mirai.wolflinkrpc.handler.local.*
+import org.wolflink.mirai.wolflinkrpc.handler.remote.*
 import org.wolflink.mirai.wolflinkrpc.listener.BotLoginListener
 import org.wolflink.mirai.wolflinkrpc.listener.GroupMsgListener
 

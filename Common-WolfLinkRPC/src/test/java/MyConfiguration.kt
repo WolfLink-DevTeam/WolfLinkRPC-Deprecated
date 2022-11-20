@@ -1,15 +1,8 @@
 import org.wolflink.common.wolflinkrpc.RPCCore
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType
-import org.wolflink.common.wolflinkrpc.api.enums.DataPackType
-import org.wolflink.common.wolflinkrpc.api.enums.ExchangeType
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse
-import org.wolflink.common.wolflinkrpc.api.interfaces.datapack.ICommandResultBody
-import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.RoutingData
-import org.wolflink.common.wolflinkrpc.service.MQService
 
 object MyConfiguration : IConfiguration {
     override fun getHost(): String = "43.248.79.66"
@@ -25,9 +18,9 @@ object MyConfiguration : IConfiguration {
 
     override fun getLogger(): ILogger = MyLogger
     override fun getClientType(): ClientType = ClientType.BUKKIT
-    override fun getAnalyseFunctionPackage(): String = "org.wolflink.mirai.wolflinkrpc.analyse"
+    override fun getRemoteCallHandlerPackage(): String = "org.wolflink.mirai.wolflinkrpc.analyse"
 
     override fun getMainClass(): Class<*> = RPCCore::class.java
-    override fun getCommandFunctionPackage(): String = ""
+    override fun getLocalCallHandlerPackage(): String = ""
     override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = mutableMapOf()
 }

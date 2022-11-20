@@ -6,10 +6,10 @@ plugins {
 }
 
 group = 'org.wolflink.mirai'
-version = '0.1.0'
+version = '1.0.0'
 
 dependencies {
-    api 'org.wolflink.common.wolflinkrpc:Common-WolfLinkRPC:1.0.0'
+    api 'org.wolflink.common.wolflinkrpc:Common-WolfLinkRPC:1.1.0'
 }
 
 repositories {

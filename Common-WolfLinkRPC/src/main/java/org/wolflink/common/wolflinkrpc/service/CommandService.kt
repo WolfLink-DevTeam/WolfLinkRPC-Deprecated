@@ -2,11 +2,11 @@ package org.wolflink.common.wolflinkrpc.service
 
 import org.jetbrains.annotations.TestOnly
 import org.wolflink.common.wolflinkrpc.RPCCore
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.enums.notReach
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration
-import org.wolflink.common.wolflinkrpc.api.interfaces.command.ICommandFunction
+import org.wolflink.common.wolflinkrpc.api.interfaces.command.ILocalHandler
 import org.wolflink.common.wolflinkrpc.entity.CommandData
 import org.wolflink.common.wolflinkrpc.entity.role.RPCUser
 import org.wolflink.common.wolflinkrpc.utils.ReflectionUtil
@@ -19,11 +19,11 @@ object CommandService {
     fun init(configuration: IConfiguration)
     {
         var count = 0
-        val classes = ReflectionUtil.getClassesByAnnotation(configuration.getCommandFunctionPackage(), CommandFunction::class.java)
+        val classes = ReflectionUtil.getClassesByAnnotation(configuration.getLocalCallHandlerPackage(), LocalCallHandler::class.java)
         for (clazz in classes)
         {
-            val iCommandFunction = clazz.getConstructor().newInstance() as ICommandFunction
-            bindCommand(iCommandFunction)
+            val iLocalHandler = clazz.getConstructor().newInstance() as ILocalHandler
+            bindCommand(iLocalHandler)
             count++
         }
         RPCCore.logger.info("CommandData has been initialized , $count commands are now available.")
@@ -100,9 +100,9 @@ object CommandService {
 //        }
 //        return nowCommandData.action.invoke(SimpleSender("","", ClientType.UNKNOWN),listOf())
     }
-    fun bindCommand(iCommandFunction: ICommandFunction)
+    fun bindCommand(iLocalHandler: ILocalHandler)
     {
-        bindCommand(iCommandFunction.getCommand(),iCommandFunction::invoke,iCommandFunction.getPermission())
+        bindCommand(iLocalHandler.getCommand(),iLocalHandler::invoke,iLocalHandler.getPermission())
     }
     // 为一串指令绑定action
     private fun bindCommand(command: String, action: (sender : RPCUser, args : List<String>) -> Pair<Boolean,String>, permission : PermissionLevel)
