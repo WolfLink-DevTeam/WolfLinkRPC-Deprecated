@@ -1,7 +1,7 @@
 package org.wolflink.paper.wolflinkrpc.command;
 
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.command.SendGroupTextMessageImpl;
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.local.SendGroupTextMessageImpl;
 
-@CommandFunction
+@LocalCallHandler
 public class SendGroupTextMessage extends SendGroupTextMessageImpl { }

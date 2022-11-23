@@ -5,7 +5,7 @@ import org.wolflink.common.wolflinkrpc.api.enums.ClientType;
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.IConfiguration;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger;
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IRemoteHandler;
 
 import java.util.*;
 
@@ -64,7 +64,7 @@ public class RPCConfiguration implements IConfiguration {
 
     @NotNull
     @Override
-    public String getAnalyseFunctionPackage() {
+    public String getRemoteCallHandlerPackage() {
         return "org.wolflink.paper.wolflinkrpc.analyse";
     }
 
@@ -76,13 +76,13 @@ public class RPCConfiguration implements IConfiguration {
 
     @NotNull
     @Override
-    public List<IAnalyse> getAnalyseFunctionList() {
-        return DefaultImpls.getAnalyseFunctionList(this);
+    public List<IRemoteHandler> getRemoteCallHandlerList() {
+        return DefaultImpls.getRemoteCallHandlerList(this);
     }
 
     @NotNull
     @Override
-    public String getCommandFunctionPackage() {
+    public String getLocalCallHandlerPackage() {
         return "org.wolflink.paper.wolflinkrpc.command";
     }
 

@@ -56,6 +56,7 @@ author("MikkoAyaka")
         RPCService.analyseFunctionList.add(ChangeQQGroup())
         RPCService.analyseFunctionList.add(FileView())
         RPCService.analyseFunctionList.add(QueryPersonalInfo())
+        RPCService.analyseFunctionList.add(GithubAPI())
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
     }

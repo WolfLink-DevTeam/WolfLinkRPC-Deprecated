@@ -1,8 +1,8 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.analyse.QueryPersonalInfoImpl;
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.remote.QueryPersonalInfoImpl;
 
-@AnalyseFunction
+@RemoteCallHandler
 public class QueryPersonalInfo extends QueryPersonalInfoImpl {
 }

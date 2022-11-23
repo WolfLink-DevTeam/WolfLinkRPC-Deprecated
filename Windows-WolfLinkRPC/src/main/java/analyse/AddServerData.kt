@@ -1,9 +1,9 @@
 package org.wolflink.windows.wolflinkrpc.analyse
 
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleRemoteHandler
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.service.MQService
@@ -11,8 +11,8 @@ import org.wolflink.windows.wolflinkrpc.PersistenceCfg
 import org.wolflink.windows.wolflinkrpc.entity.MCServer
 import org.wolflink.windows.wolflinkrpc.entity.MCServerDataClass
 
-@AnalyseFunction
-class AddServerData : SimpleCommandAnalyse() {
+@RemoteCallHandler
+class AddServerData : SimpleRemoteHandler() {
 
     override fun getPermission(): PermissionLevel = PermissionLevel.ADMIN
     override fun getKeyword(): String = "添加服务器数据"

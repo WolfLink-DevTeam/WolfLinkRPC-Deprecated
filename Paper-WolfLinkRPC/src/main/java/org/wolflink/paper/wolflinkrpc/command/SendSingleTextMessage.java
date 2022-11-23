@@ -1,7 +1,7 @@
 package org.wolflink.paper.wolflinkrpc.command;
 
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.command.SendSingleTextMessageImpl;
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.local.SendSingleTextMessageImpl;
 
-@CommandFunction
+@LocalCallHandler
 public class SendSingleTextMessage extends SendSingleTextMessageImpl { }

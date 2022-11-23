@@ -1,6 +1,5 @@
 package org.wolflink.windows.wolflinkrpc
 
-import org.wolflink.common.wolflinkrpc.BaseConfiguration
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger
 import java.text.SimpleDateFormat
 import java.util.*

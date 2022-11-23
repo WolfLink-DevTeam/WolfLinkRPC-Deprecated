@@ -1,13 +1,13 @@
 package org.wolflink.windows.wolflinkrpc.command
 
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
-import org.wolflink.common.wolflinkrpc.entity.impl.command.RemoteAPICallImpl
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.local.RemoteAPICallImpl
 import org.wolflink.windows.wolflinkrpc.RPCLogger
 
-@CommandFunction
+@LocalCallHandler
 class RemoteAPICall : RemoteAPICallImpl(object : CallbackFunction{
     override fun success(datapack: RPCDataPack) {
         RPCLogger.info(datapack.jsonObject.get("info").asString)

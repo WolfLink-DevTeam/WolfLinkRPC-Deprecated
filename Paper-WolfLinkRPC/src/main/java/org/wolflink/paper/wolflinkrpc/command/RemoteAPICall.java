@@ -1,13 +1,13 @@
 package org.wolflink.paper.wolflinkrpc.command;
 
 import org.jetbrains.annotations.NotNull;
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction;
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler;
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction;
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack;
-import org.wolflink.common.wolflinkrpc.entity.impl.command.RemoteAPICallImpl;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.local.RemoteAPICallImpl;
 import org.wolflink.paper.wolflinkrpc.App;
 
-@CommandFunction
+@LocalCallHandler
 public class RemoteAPICall extends RemoteAPICallImpl {
     public RemoteAPICall() {
         super(new CallbackFunction() {

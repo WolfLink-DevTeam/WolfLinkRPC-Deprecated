@@ -3,17 +3,17 @@ package org.wolflink.paper.wolflinkrpc.analyse;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler;
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType;
 import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAnalyse;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IPredicate;
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IRemoteHandler;
 import org.wolflink.common.wolflinkrpc.entity.role.RPCUser;
 import org.wolflink.paper.wolflinkrpc.App;
 
-@AnalyseFunction
-public class BroadcastTextMessage implements IAnalyse {
+@RemoteCallHandler
+public class BroadcastTextMessage implements IRemoteHandler {
     @NotNull
     @Override
     public IPredicate getPredicate() {

@@ -4,7 +4,6 @@ import com.sun.jna.platform.win32.User32
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.wolflink.common.wolflinkrpc.api.interfaces.JsonSerializable
 import org.wolflink.windows.wolflinkrpc.expansion.keyClick
 import org.wolflink.windows.wolflinkrpc.expansion.mouseClick
 import java.awt.Robot

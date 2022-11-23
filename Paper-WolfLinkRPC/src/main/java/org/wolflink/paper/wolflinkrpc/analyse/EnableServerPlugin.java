@@ -3,15 +3,15 @@ package org.wolflink.paper.wolflinkrpc.analyse;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler;
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction;
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse;
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleRemoteHandler;
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody;
 import org.wolflink.common.wolflinkrpc.service.MQService;
 
-@AnalyseFunction
-public class EnableServerPlugin extends SimpleCommandAnalyse {
+@RemoteCallHandler
+public class EnableServerPlugin extends SimpleRemoteHandler {
 
     @NotNull
     @Override

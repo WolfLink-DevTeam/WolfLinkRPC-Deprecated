@@ -1,7 +1,6 @@
 package org.wolflink.paper.wolflinkrpc;
 
 import lombok.Data;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 

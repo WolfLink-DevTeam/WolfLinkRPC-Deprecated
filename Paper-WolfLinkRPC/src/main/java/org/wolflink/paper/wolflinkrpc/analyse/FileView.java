@@ -1,7 +1,7 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.analyse.FileViewImpl;
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.remote.FileViewImpl;
 
-@AnalyseFunction
+@RemoteCallHandler
 public class FileView extends FileViewImpl{}

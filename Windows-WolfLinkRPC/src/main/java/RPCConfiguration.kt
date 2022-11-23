@@ -13,8 +13,8 @@ object RPCConfiguration : IConfiguration {
     override fun getQueueName(): String = PersistenceCfg.queueName
     override fun getLogger(): ILogger = RPCLogger
     override fun getClientType(): ClientType = ClientType.WINDOWS
-    override fun getAnalyseFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.analyse"
+    override fun getRemoteCallHandlerPackage(): String = "org.wolflink.windows.wolflinkrpc.analyse"
     override fun getMainClass(): Class<*> = App::class.java
-    override fun getCommandFunctionPackage(): String = "org.wolflink.windows.wolflinkrpc.command"
+    override fun getLocalCallHandlerPackage(): String = "org.wolflink.windows.wolflinkrpc.command"
     override fun getPermissionGroupMap(): MutableMap<String, PermissionLevel> = PersistenceCfg.permissionMap
 }

@@ -1,8 +1,8 @@
 package org.wolflink.paper.wolflinkrpc.command;
 
-import org.wolflink.common.wolflinkrpc.api.annotations.CommandFunction;
-import org.wolflink.common.wolflinkrpc.entity.impl.command.SetLocalPermissionImpl;
+import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler;
+import org.wolflink.common.wolflinkrpc.entity.impl.handler.local.SetLocalPermissionImpl;
 
-@CommandFunction
+@LocalCallHandler
 public class SetLocalPermission extends SetLocalPermissionImpl {
 }

@@ -10,5 +10,6 @@ class RemoteCommandHelp : RemoteHelpImpl("""
     修改群号 {目标群号}
     查询目录 {文件夹路径} - 用|符号作为反斜杠的替代符
     个人信息 - 查询当前数据包发送者的信息
+    github - 调用Github接口查询信息
 """.trimIndent()) {
 }

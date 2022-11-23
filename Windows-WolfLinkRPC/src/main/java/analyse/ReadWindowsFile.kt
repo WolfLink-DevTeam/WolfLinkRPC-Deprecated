@@ -1,17 +1,17 @@
 package org.wolflink.windows.wolflinkrpc.analyse
 
-import org.wolflink.common.wolflinkrpc.api.annotations.AnalyseFunction
+import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.IAction
-import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleCommandAnalyse
+import org.wolflink.common.wolflinkrpc.api.interfaces.analyse.SimpleRemoteHandler
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 import org.wolflink.windows.wolflinkrpc.enums.ReadableFileType
 import java.io.File
 
-@AnalyseFunction
-class ReadWindowsFile : SimpleCommandAnalyse() {
+@RemoteCallHandler
+class ReadWindowsFile : SimpleRemoteHandler() {
 
     override fun getPermission(): PermissionLevel = PermissionLevel.ADMIN
     override fun getKeyword(): String = "读取文件"
@@ -21,11 +21,18 @@ class ReadWindowsFile : SimpleCommandAnalyse() {
             override fun invoke(datapack: RPCDataPack) {
                 val originCommand = datapack.jsonObject["command"].asString
                 val command = getCommand(originCommand)
-                val path = command.replace("|","/")
-                val file = File(path)
-                val type: String = file.extension
-                try{
-                    ReadableFileType.valueOf(type.uppercase())
+                val commandParts = command.split(" ")
+                if(commandParts.size < 2)
+                {
+                    MQService.sendCommandFeedBack(datapack,
+                        SimpleCommandResultBody(false,"指令格式错误,可参考格式: 读取文件 D|Test|myFile txt")
+                    )
+                    return
+                }
+                val path = commandParts[0].replace("|","/")
+                val type: ReadableFileType
+                try {
+                    type = ReadableFileType.valueOf(commandParts[1].uppercase())
                 } catch (e : java.lang.IllegalArgumentException)
                 {
                     MQService.sendCommandFeedBack(datapack,
@@ -34,6 +41,7 @@ class ReadWindowsFile : SimpleCommandAnalyse() {
                     )
                     return
                 }
+                val file = File("$path.${type.name.lowercase()}")
                 if(file.exists() && file.canRead())
                 {
                     val text = file.readText()
