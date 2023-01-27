@@ -55,10 +55,10 @@ _如有其它需要可参考上方开发者指南，基于Common模块自行开�
 #### RabbitMQ-Server 中央服务端
 如果你希望搭建一个私有的RPC系统，则需要自行搭建 RabbitMQ 消息中转服务器，步骤如下：
 
-1. 前往 [Erlang 官网](https://github.com/erlang/otp/releases/download/OTP-25.1.2/otp_win64_25.1.2.exe)，下载最新版本的 Erlang 运行库 ( 一般为 Windows 64位 系统环境，选择对应版本即可)
+1. 前往 [Erlang-Github](https://github.com/erlang/otp/releases)，下载最新版本的 Erlang 运行库 ( 一般为 Windows 64位 系统环境，选择otp_win64最新版本即可)
 2. 安装 Erlang 到本地目录
-3. 配置好 Erlang 的环境变量，添加环境变量 ERLANG_HOME，变量值为 Erlang 根文件夹的目录路径，例如 C:\Program Files\Erlang。然后编辑 Path 变量，新建一项值为 %ERLANG_HOME%\bin 然后保存
-4. 下载RabbitMQ-Server服务端并安装
+3. 配置好 Erlang 的系统变量，添加系统变量 ERLANG_HOME，变量值为 Erlang 根文件夹的目录路径，例如 C:\Program Files\Erlang。然后编辑系统变量中的 Path 变量，新建一项值为 %ERLANG_HOME%\bin 然后保存
+4. 前往[RabbitMQ-Github](https://github.com/rabbitmq/rabbitmq-server/releases)下载RabbitMQ-Server服务端并安装
 5. 安装完成后前往其安装目录，进入其目录内 rabbitmq_server-3.7.3\sbin 文件夹内，在此目录中打开 cmd，输入 rabbitmq-plugins enable rabbitmq_management 启用rabbitmq自带的可视化管理页面功能
 6. 打开浏览器，输入 http://localhost:15672 账号密码默认都为guest
 
