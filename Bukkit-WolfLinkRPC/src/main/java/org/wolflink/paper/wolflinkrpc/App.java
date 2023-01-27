@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.wolflink.common.wolflinkrpc.RPCCore;
 import org.wolflink.common.wolflinkrpc.api.interfaces.ILogger;
 import org.wolflink.paper.wolflinkrpc.listener.OnPlayerChat;
+import org.wolflink.paper.wolflinkrpc.listener.OnPlayerJoin;
 import org.wolflink.paper.wolflinkrpc.listener.OnServerClose;
 
 public final class App extends JavaPlugin {
@@ -29,6 +30,7 @@ public final class App extends JavaPlugin {
     {
         Bukkit.getPluginManager().registerEvents(new OnPlayerChat(),this);
         Bukkit.getPluginManager().registerEvents(new OnServerClose(),this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerJoin(),this);
     }
 
     @Override

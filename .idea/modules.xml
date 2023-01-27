@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WolfLinkRPC.iml" filepath="$PROJECT_DIR$/.idea/WolfLinkRPC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ktor-WolfLinkRPC/Ktor-WolfLinkRPC.iml" filepath="$PROJECT_DIR$/Ktor-WolfLinkRPC/Ktor-WolfLinkRPC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ktor-WolfLinkRPC.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Ktor-WolfLinkRPC.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ktor-WolfLinkRPC.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Ktor-WolfLinkRPC.test.iml" />
     </modules>
   </component>
 </project>

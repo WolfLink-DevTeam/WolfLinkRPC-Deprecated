@@ -4,6 +4,7 @@ import kotlin.Pair;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.wolflink.common.wolflinkrpc.entity.RoutingData;
@@ -13,9 +14,10 @@ import org.wolflink.paper.wolflinkrpc.App;
 
 public class OnPlayerChat implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerChat(AsyncPlayerChatEvent e)
     {
+        if(e.isCancelled())return;
         String msg = e.getMessage();
         if(msg.startsWith(">"))
         {

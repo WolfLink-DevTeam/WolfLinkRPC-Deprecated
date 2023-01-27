@@ -7,10 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Paper-WolfLinkRPC" />
+        <module name="Bukkit-WolfLinkRPC" />
         <module name="Common-WolfLinkRPC" />
-        <module name="Windows-WolfLinkRPC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Mirai-WolfLinkRPC" target="1.8" />
+      <module name="Mirai-WolfLinkRPC.main" target="1.8" />
+      <module name="Mirai-WolfLinkRPC.test" target="1.8" />
+      <module name="Windows-WolfLinkRPC" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

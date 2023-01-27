@@ -17,7 +17,7 @@
       <list>
         <option value="$PROJECT_DIR$/Paper-WolfLinkRPC/pom.xml" />
         <option value="$PROJECT_DIR$/Common-WolfLinkRPC/pom.xml" />
-        <option value="$PROJECT_DIR$/Windows-WolfLinkRPC/pom.xml" />
+        <option value="$PROJECT_DIR$/Bukkit-WolfLinkRPC/pom.xml" />
       </list>
     </option>
   </component>
