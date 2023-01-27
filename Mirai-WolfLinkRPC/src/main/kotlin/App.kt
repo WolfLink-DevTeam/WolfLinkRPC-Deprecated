@@ -66,6 +66,8 @@ author("MikkoAyaka")
         RPCService.analyseFunctionList.add(FileView())
         RPCService.analyseFunctionList.add(QueryPersonalInfo())
         RPCService.analyseFunctionList.add(GithubAPI())
+        RPCService.analyseFunctionList.add(BirthdayVerify)
+        RPCService.analyseFunctionList.add(QQBindVerify)
 
         RPCConfiguration.getLogger().info("Mirai 插件已启用")
     }
