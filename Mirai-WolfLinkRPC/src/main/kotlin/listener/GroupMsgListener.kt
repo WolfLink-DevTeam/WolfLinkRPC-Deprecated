@@ -16,7 +16,11 @@ object GroupMsgListener : ListenerHost {
         if(msg.startsWith(">"))
         {
             RPCConfiguration.getLogger().info("执行指令")
-            RPCService.analyseCommand(RPCUser(RPCConfiguration.getQueueName(),RPCConfiguration.getClientType(),this.senderName,this.sender.id.toString()),msg)
+            val pair = RPCService.analyseCommand(RPCUser(RPCConfiguration.getQueueName(),RPCConfiguration.getClientType(),this.senderName,this.sender.id.toString()),msg)
+            subject.sendMessage("""
+                执行结果：${if(pair.first)"成功" else "失败"}
+                返回信息：${pair.second}
+            """.trimIndent())
         }
     }
 }

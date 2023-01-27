@@ -7,10 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Paper-WolfLinkRPC" />
         <module name="Common-WolfLinkRPC" />
-        <module name="Windows-WolfLinkRPC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Ktor-WolfLinkRPC" target="11" />
+      <module name="Ktor-WolfLinkRPC.main" target="11" />
+      <module name="Ktor-WolfLinkRPC.test" target="11" />
+      <module name="Paper-WolfLinkRPC" target="9" />
+      <module name="Windows-WolfLinkRPC" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
