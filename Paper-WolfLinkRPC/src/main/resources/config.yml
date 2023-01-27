@@ -1,8 +1,0 @@
-Host: "127.0.0.1"
-Port: 10000
-Username: "username"
-Password: "password"
-Debug: false
-PermissionList: []
-# 实际队列名为 bukkit_paper_default
-ClientTag: paper_default
