@@ -7,13 +7,9 @@ import org.wolflink.common.wolflinkrpc.entity.RPCDataPack
 import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandResultBody
 import org.wolflink.common.wolflinkrpc.service.MQService
 import java.io.File
-
 open class FileViewImpl : SimpleRemoteHandler() {
-
     override fun getPermission(): PermissionLevel = PermissionLevel.OWNER
-
     override fun getKeyword(): String = "查询目录"
-
     override fun getAction(): IAction {
         return object : IAction{
             override fun invoke(datapack: RPCDataPack) {
