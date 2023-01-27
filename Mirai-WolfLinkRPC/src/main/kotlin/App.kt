@@ -42,6 +42,7 @@ author("MikkoAyaka")
         registerListener()
 
         RPCCore.initSystem(RPCConfiguration)
+
         CommandService.bindCommand(SendSingleTextMessage())
         CommandService.bindCommand(SendAllTextMessage())
         CommandService.bindCommand(SendGroupTextMessage())

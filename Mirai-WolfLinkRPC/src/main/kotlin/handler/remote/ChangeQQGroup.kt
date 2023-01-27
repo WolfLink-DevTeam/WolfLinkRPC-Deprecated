@@ -15,7 +15,7 @@ class ChangeQQGroup : SimpleRemoteHandler() {
     override fun getAction(): IAction {
         return object : IAction{
             override fun invoke(datapack: RPCDataPack) {
-                val originCommand: String = datapack.jsonObject.get("handler/local").asString
+                val originCommand: String = datapack.jsonObject["command"].asString
                 val command = getCommand(originCommand)
                 val groupNumber = command.toLongOrNull()
                 if(groupNumber == null)

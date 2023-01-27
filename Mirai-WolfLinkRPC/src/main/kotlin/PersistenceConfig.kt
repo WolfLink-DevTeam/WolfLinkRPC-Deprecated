@@ -6,7 +6,7 @@ import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel
 
 object PersistenceConfig : AutoSavePluginData("wolflinkrpc_config") {
 
-    val enabledGroups : MutableSet<Long> by value(mutableSetOf(332607573L))
+    val enabledGroups : MutableSet<Long> by value(mutableSetOf(582075353L))
     val botManagers : MutableSet<Long> by value(mutableSetOf(3401286177L,694163437L))
     val permissionMap : MutableMap<String,PermissionLevel> by value(mutableMapOf("测试用户的uniqueID" to PermissionLevel.DEFAULT))
     var debug : Boolean by value(false)
