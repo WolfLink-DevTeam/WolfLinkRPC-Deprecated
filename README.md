@@ -1,4 +1,5 @@
 <a name="d3n6K"></a>
+![qxlarge-dsc-E3B58B29E4342C84922FE57BC446B9D1.jpg](https://img1.imgtp.com/2023/01/27/ir1FWGpa.jpg)
 ### [WolfLink-RPC 开发者指南](https://github.com/MikkoAyaka/WolfLinkRPC/wiki/%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97)
 <a name="OuzWl"></a>
 ### 系统介绍
@@ -52,13 +53,13 @@ _如有其它需要可参考上方开发者指南，基于Common模块自行开�
 ### 如何部署
 <a name="JCOMK"></a>
 #### RabbitMQ-Server 中央服务端
-如果你希望搭建一个私有的RPC系统，则需要自行搭建 RabbitMQ 消息中转服务器，步骤如下：
+如果你希望搭建一个私有的RPC系统，则需要自行搭建 RabbitMQ 消息中转服务器，在**Windows环境**下的步骤如下：
 
-1. 前往 [Erlang 官网](https://github.com/erlang/otp/releases/download/OTP-25.1.2/otp_win64_25.1.2.exe)，下载最新版本的 Erlang 运行库 ( 一般为 Windows 64位 系统环境，选择对应版本即可)
+1. 前往 [Erlang-Github](https://github.com/erlang/otp/releases)，下载最新版本的 Erlang 运行库 ( 一般为 Windows 64位 系统环境，选择otp_win64最新版本即可)
 2. 安装 Erlang 到本地目录
-3. 配置好 Erlang 的环境变量，添加环境变量 ERLANG_HOME，变量值为 Erlang 根文件夹的目录路径，例如 C:\Program Files\Erlang。然后编辑 Path 变量，新建一项值为 %ERLANG_HOME%\bin 然后保存
-4. 下载RabbitMQ-Server服务端并安装
-5. 安装完成后前往其安装目录，进入其目录内 rabbitmq_server-3.7.3\sbin 文件夹内，在此目录中打开 cmd，输入 rabbitmq-plugins enable rabbitmq_management 启用rabbitmq自带的可视化管理页面功能
+3. 配置好 Erlang 的系统变量，添加系统变量 ERLANG_HOME，变量值为 Erlang 根文件夹的目录路径，例如 C:\Program Files\Erlang。然后编辑系统变量中的 Path 变量，新建一项值为 %ERLANG_HOME%\bin 然后保存
+4. 前往[RabbitMQ-Github](https://github.com/rabbitmq/rabbitmq-server/releases)下载RabbitMQ-Server服务端并安装
+5. 安装完成后前往其安装目录，进入其目录内 rabbitmq_server-3.7.3\sbin 文件夹内，在此目录中打开 cmd，输入 rabbitmq-plugins enable rabbitmq_management 启用rabbitmq自带的可视化管理页面功能，然后在cmd中输入net stop rabbitmq 执行后再输入net start rabbitmq重启服务。
 6. 打开浏览器，输入 http://localhost:15672 账号密码默认都为guest
 
 至此部署完毕，如需添加用户，请前往RabbitMQ服务端后台页面进行添加<br />想要修改服务端对外开放的TCP连接端口(默认为5672)则需要修改配置文件，前往%Appdata%\Roaming\RabbitMQ目录，创建一个新文件 rabbitmq.conf 在其中写入以下内容的配置项：
