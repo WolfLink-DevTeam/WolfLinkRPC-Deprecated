@@ -16,6 +16,7 @@ import org.wolflink.common.wolflinkrpc.entity.role.ClientReceiver;
 import org.wolflink.common.wolflinkrpc.entity.role.RPCUser;
 import org.wolflink.common.wolflinkrpc.service.MQService;
 import org.wolflink.paper.wolflinkrpc.App;
+import org.wolflink.paper.wolflinkrpc.RPCConfiguration;
 
 public class OnPlayerJoin implements Listener {
     @EventHandler
@@ -31,7 +32,7 @@ public class OnPlayerJoin implements Listener {
                         ClientType.BUKKIT,
                         p.getName(),
                         p.getName(),
-                        new RoutingData()))
+                        new RoutingData().addRoutingKey(App.RPC_CONFIGURATION.getQueueName())))
                 .addReceiver(new ClientReceiver(routingKey))
                 .build();
         MQService.INSTANCE.sendDataPack(datapack, true, new CallbackFunction() {

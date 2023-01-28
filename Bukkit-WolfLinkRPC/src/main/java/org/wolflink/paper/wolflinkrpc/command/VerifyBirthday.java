@@ -20,6 +20,7 @@ import org.wolflink.common.wolflinkrpc.entity.impl.databody.SimpleCommandExecute
 import org.wolflink.common.wolflinkrpc.entity.role.ClientReceiver;
 import org.wolflink.common.wolflinkrpc.entity.role.RPCUser;
 import org.wolflink.common.wolflinkrpc.service.MQService;
+import org.wolflink.paper.wolflinkrpc.App;
 
 import java.util.List;
 import java.util.Random;
@@ -38,6 +39,7 @@ public class VerifyBirthday implements ILocalHandler {
 
         String routingKey = "mirai_WolfBot+";
         String message = "验证生日";
+        sender.getRoutingData().addRoutingKey(App.RPC_CONFIGURATION.getQueueName());
         RPCDataPack datapack = new RPCDataPack.Builder()
                 .setType(DataPackType.COMMAND_EXECUTE)
                 .setDatapackBody(new SimpleCommandExecuteBody(message))
