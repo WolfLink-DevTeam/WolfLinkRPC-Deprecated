@@ -21,7 +21,7 @@ class BroadcastTextMessage : IRemoteHandler {
                 {
                     GlobalScope.launch {
                         val sender = datapack.sender
-                        val msg = datapack.jsonObject.get("msg")?.asString ?: "错误消息"
+                        val msg = datapack.jsonObject.get("msg")?.asString ?: return@launch
                         if(sender.clientType != ClientType.ANONYMOUS) App.bot.getGroup(groupID)?.sendMessage("[${datapack.sender.queueName}|${sender.userName}] $msg")
                         else App.bot.getGroup(groupID)?.sendMessage(msg)
                     }
