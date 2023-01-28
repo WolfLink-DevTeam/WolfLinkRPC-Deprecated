@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.enums.ClientType;
+import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction;
 import org.wolflink.common.wolflinkrpc.entity.RPCDataPack;
 import org.wolflink.common.wolflinkrpc.entity.RoutingData;
@@ -23,6 +24,7 @@ public class OnPlayerJoin implements Listener {
         String message = "验证绑定";
         Player p = e.getPlayer();
         RPCDataPack datapack = new RPCDataPack.Builder()
+                .setType(DataPackType.COMMAND_EXECUTE)
                 .setDatapackBody(new SimpleCommandExecuteBody(message))
                 .setSender(new RPCUser(App.RPC_CONFIGURATION.getQueueName(),
                         ClientType.BUKKIT,

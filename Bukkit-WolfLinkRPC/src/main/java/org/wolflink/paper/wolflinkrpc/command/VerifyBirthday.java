@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.annotations.LocalCallHandler;
+import org.wolflink.common.wolflinkrpc.api.enums.DataPackType;
 import org.wolflink.common.wolflinkrpc.api.enums.PermissionLevel;
 import org.wolflink.common.wolflinkrpc.api.interfaces.CallbackFunction;
 import org.wolflink.common.wolflinkrpc.api.interfaces.command.ILocalHandler;
@@ -38,6 +39,7 @@ public class VerifyBirthday implements ILocalHandler {
         String routingKey = "mirai_WolfBot+";
         String message = "验证生日";
         RPCDataPack datapack = new RPCDataPack.Builder()
+                .setType(DataPackType.COMMAND_EXECUTE)
                 .setDatapackBody(new SimpleCommandExecuteBody(message))
                 .setSender(sender)
                 .addReceiver(new ClientReceiver(routingKey))
