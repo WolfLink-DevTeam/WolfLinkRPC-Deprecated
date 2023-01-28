@@ -1,6 +1,5 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -29,7 +28,7 @@ public class ServerClose extends SimpleRemoteHandler {
     @Override
     public IAction getAction() {
         return (rpcDataPack) -> {
-            Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(false)+" 服务器即将在10秒后关闭。"));
+            Bukkit.broadcastMessage(App.RPC_CONFIGURATION.getProjectChineseName(false)+" 服务器即将在10秒后关闭。");
             for (Player p : Bukkit.getOnlinePlayers())
             {
                 p.sendTitle("§7[ §e! §7] §f服务器即将在 §c10秒 §f后关闭","§7请做好准备",20,60,20);

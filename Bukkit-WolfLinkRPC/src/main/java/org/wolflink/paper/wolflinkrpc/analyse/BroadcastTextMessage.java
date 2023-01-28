@@ -1,6 +1,5 @@
 package org.wolflink.paper.wolflinkrpc.analyse;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.wolflink.common.wolflinkrpc.api.annotations.RemoteCallHandler;
@@ -25,8 +24,8 @@ public class BroadcastTextMessage implements IRemoteHandler {
     public IAction getAction() {
         return (rpcDataPack) -> {
             RPCUser sender = rpcDataPack.getSender();
-            if(sender.getClientType() != ClientType.ANONYMOUS) Bukkit.broadcast(Component.text(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getUserName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString()));
-            else Bukkit.broadcast(Component.text(rpcDataPack.getJsonObject().get("msg").getAsString()));
+            if(sender.getClientType() != ClientType.ANONYMOUS) Bukkit.broadcastMessage(App.RPC_CONFIGURATION.getProjectChineseName(true)+" §a"+sender.getUserName()+" §8» §f"+rpcDataPack.getJsonObject().get("msg").getAsString());
+            else Bukkit.broadcastMessage(rpcDataPack.getJsonObject().get("msg").getAsString());
         };
     }
 }

@@ -12,9 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Mirai-WolfLinkRPC" target="1.8" />
-      <module name="Mirai-WolfLinkRPC.main" target="1.8" />
-      <module name="Mirai-WolfLinkRPC.test" target="1.8" />
       <module name="Windows-WolfLinkRPC" target="11" />
     </bytecodeTargetLevel>
   </component>

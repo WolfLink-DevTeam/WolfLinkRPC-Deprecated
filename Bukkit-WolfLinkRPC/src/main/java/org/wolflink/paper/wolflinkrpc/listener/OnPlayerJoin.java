@@ -34,7 +34,6 @@ public class OnPlayerJoin implements Listener {
         MQService.INSTANCE.sendDataPack(datapack, true, new CallbackFunction() {
             @Override
             public void success(@NotNull RPCDataPack rpcDataPack) {}
-
             @Override
             public void failed(@NotNull RPCDataPack rpcDataPack) {
                 p.kickPlayer("QQ绑定验证失败！请前往群内绑定你的游戏账户与QQ号。");
