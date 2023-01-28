@@ -1,5 +1,6 @@
 package org.wolflink.paper.wolflinkrpc.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,7 +39,7 @@ public class OnPlayerJoin implements Listener {
             public void success(@NotNull RPCDataPack rpcDataPack) {}
             @Override
             public void failed(@NotNull RPCDataPack rpcDataPack) {
-                p.kickPlayer("QQ绑定验证失败！请前往群内绑定你的游戏账户与QQ号。");
+                Bukkit.getScheduler().runTask(App.INSTANCE,()->p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a7f请前往群内绑定你的游戏账户与QQ号。"));
             }
         },10);
     }
