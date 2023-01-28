@@ -37,10 +37,17 @@ public class OnPlayerJoin implements Listener {
                 .build();
         MQService.INSTANCE.sendDataPack(datapack, true, new CallbackFunction() {
             @Override
-            public void success(@NotNull RPCDataPack rpcDataPack) {}
+            public void success(@NotNull RPCDataPack rpcDataPack)
+            {
+                if(!rpcDataPack.getJsonObject().get("result").getAsBoolean())
+                {
+                    Bukkit.getScheduler().runTask(App.INSTANCE,()->p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a7f请前往群内绑定你的游戏账户与QQ号。"));
+                }
+            }
             @Override
             public void failed(@NotNull RPCDataPack rpcDataPack) {
-                Bukkit.getScheduler().runTask(App.INSTANCE,()->p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a7f请前往群内绑定你的游戏账户与QQ号。"));
+                Bukkit.getScheduler().runTask(App.INSTANCE,()->
+                        p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a77可能是网络连接不畅，请重试。多次尝试无果请联系 \u00a7fQQ 3401286177"));
             }
         },10);
     }
