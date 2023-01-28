@@ -16,8 +16,11 @@ object QQBindVerify : SimpleRemoteHandler() {
     override fun getAction(): IAction {
         return object : IAction {
             override fun invoke(datapack: RPCDataPack) {
+
+                val result = MemberData.getQQNumber(datapack.sender.userName) != 0L
+
                 MQService.sendCommandFeedBack(datapack,
-                    SimpleCommandResultBody(MemberData.getQQNumber(datapack.sender.userName) != 0L,"")
+                    SimpleCommandResultBody(result,"")
                 )
             }
         }

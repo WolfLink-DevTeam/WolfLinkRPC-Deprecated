@@ -2,6 +2,7 @@ package org.wolflink.mirai.wolflinkrpc.data
 
 import net.mamoe.mirai.console.data.AutoSavePluginData
 import net.mamoe.mirai.console.data.value
+import org.wolflink.mirai.wolflinkrpc.RPCLogger
 import java.util.Calendar
 
 object MemberData : AutoSavePluginData("member_data") {
