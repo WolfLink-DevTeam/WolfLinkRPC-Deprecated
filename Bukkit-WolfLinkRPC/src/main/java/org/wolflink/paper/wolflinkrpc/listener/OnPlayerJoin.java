@@ -43,7 +43,7 @@ public class OnPlayerJoin implements Listener {
                 {
                     if(!rpcDataPack.getJsonObject().get("result").getAsBoolean())
                     {
-                        Bukkit.getScheduler().runTask(App.INSTANCE,()->p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a7f请前往群内绑定你的游戏账户与QQ号。"));
+                        Bukkit.getScheduler().runTask(App.INSTANCE,()->p.kickPlayer("\u00a7cQQ绑定验证失败！\u00a7f请前往 Q群582075353 绑定你的游戏账户与QQ号。"));
                     }
                 }
                 @Override
